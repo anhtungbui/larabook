@@ -18,7 +18,7 @@
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
 
-                                    {{-- <!-- Form Group (name) --> --}}
+                                    <!-- Form Group (name) -->
                                     <div class="form-group" >
                                         <label class="small mb-1" for="name">Name</label>
                                         <div>

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-<div id="layoutAuthentication" class="bg-primary pt-5">
+<div id="layoutAuthentication" class="bg-gradient-primary-to-secondary pt-5">
     <div id="layoutAuthentication_content">
         <main>
             <div class="container">

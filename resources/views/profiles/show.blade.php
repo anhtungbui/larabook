@@ -66,9 +66,10 @@
         </div>
         <!-- Right column -->
         <div class="col-xl-8">
-            <!-- Account details card-->
+            <!-- All Posts -->
+            @foreach ($user->posts as $post)
             <div class="card mb-4">
-                <div class="card-header post-card-header">
+                <div class="card-header post-card-header d-flex justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl mr-3">
                             <img src="storage/{{ $user->profile->avatar_src }}" alt="avatar" class="avatar-img img-fluid"/>
@@ -79,12 +80,40 @@
                         </div>
 
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="pb-3">What's on my mind right now?</div>
 
                     @auth
+                        <div class="dropdown">
+                            <button 
+                                class="btn btn-icon btn-light" 
+                                id="dropdownMenuButton" 
+                                type="button" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                aria-expanded="false"
+                            >
+                                <i class="fa fa-ellipsis-h"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a 
+                                    class="dropdown-item" 
+                                    href="{{ route('profile', [$user->username]) }}/posts/{{ $post->id }}/edit"
+                                >
+                                    Edit post
+                                </a>
+                                <a 
+                                    class="dropdown-item" 
+                                    href="{{ route('profile', [$user->username]) }}/posts/{{ $post->id }}/delete"
+                                >
+                                    Delete post
+                                </a>
+                            </div>
+                        </div>
+                    @endauth
+                </div>
+                <div class="card-body">
+                    <div class="pb-3">{{ $post->content }}</div>
 
+                    @auth
                         <div class="post-reaction pb-2 d-flex justify-content-around align-items-center">
                             {{-- <div class="post-reaction-counter border "> --}}
                                 {{-- @if (likecount > 0) TODO --}}
@@ -105,8 +134,8 @@
                         </form>    
                     @endauth
                 </div>
-                
-            </div>
+            </div>                
+            @endforeach
         </div>
     </div>
 </div>    

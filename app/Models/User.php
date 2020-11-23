@@ -43,10 +43,20 @@ class User extends Authenticatable
     ];
 
     /**
+     * Execute whenever a new user is created
+     */
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            $user->profile()->create();
+        });
+    }
+
+    /**
      * Model relationships
      */
     public function profile()
     {
-        $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 }

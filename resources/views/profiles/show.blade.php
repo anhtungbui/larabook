@@ -66,6 +66,12 @@
         </div>
         <!-- Right column -->
         <div class="col-xl-8">
+            <!-- Hidden Alerts -->
+            @if (session("status"))
+                <div class="alert alert-success shadow-sm" role="alert">
+                    {{ session("status") }}
+                </div>
+            @endif
             <!-- All Posts -->
             @foreach ($user->posts as $post)
             <div class="card mb-4">
@@ -94,18 +100,41 @@
                                 <i class="fa fa-ellipsis-h"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a 
-                                    class="dropdown-item" 
-                                    href="{{ route('profile', [$user->username]) }}/posts/{{ $post->id }}/edit"
+                                <form 
+                                    action="{{ route('profile', [$user->username]) }}/posts/{{ $post->id}}/edit"
+                                    method="GET"
+                                    class="dropdown-item"
                                 >
-                                    Edit post
-                                </a>
-                                <a 
-                                    class="dropdown-item" 
-                                    href="{{ route('profile', [$user->username]) }}/posts/{{ $post->id }}/delete"
+                                    <input type="submit" class="btn btn-link text-decoration-none" value="Edit Post">
+                                </form>
+                                <form 
+                                    action="{{ route('posts.show', [$user->username, $post]) }}"
+                                    method="POST"
+                                    class="dropdown-item"
                                 >
-                                    Delete post
-                                </a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="text" class="d-none" name="post_id" value="{{ $post->id }}">
+                                    <input type="submit" class="btn btn-link text-decoration-none" value="Delete Post">
+                                </form>
+                            </div>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <!-- Button trigger modal -->
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Launch Demo Modal</button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Default Bootstrap Modal</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">...</div>
+                                            <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save changes</button></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endauth

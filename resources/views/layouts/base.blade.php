@@ -44,7 +44,13 @@
             <ul class="navbar-nav align-items-center ml-auto">
 
                 @auth
-                    <a href="{{ route('profile', [auth()->user()->username]) }}" class="d-none d-lg-block pr-3">
+                    <a
+                        class="btn btn-light rounded-pill mr-2 d-none d-lg-block"
+                        href="{{ route('profile', [auth()->user()->username]) }}"
+                        data-toggle="tooltip" 
+                        data-placement="bottom" 
+                        title="To My Profile"
+                    >
                         {{ auth()->user()->name }}
                     </a>
                     <!-- User Dropdown-->
@@ -91,7 +97,7 @@
                     <!-- Create Dropdown-->
                     <li class="nav-item dropdown no-caret pl-lg-1 mr-lg-0 dropdown-user">
                         <a 
-                            class="btn btn-icon btn-transparent-dark dropdown-toggle" 
+                            class="btn btn-icon btn-light dropdown-toggle" 
                             id="navbarDropdownUserImage" 
                             href="javascript:void(0);" 
                             role="button" 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (auth()->check()) {
+        return view('home');
+    } else {
+        return view('welcome');
+    }
+        
 });
 
 Auth::routes();
@@ -22,3 +28,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::view('/profile', 'layouts.base');
+
+// Route::view('/', 'welcome')->middleware('guest');
+// Route::view('/', 'home')->middleware('auth');
+
+Route::get('/{user:username}', [ProfileController::class, 'show'])->name('profile');

@@ -1,0 +1,28 @@
+.profile-hero {
+    height: 350px;
+    border-radius: 0.35rem;
+    background: #c5c5c5;
+}
+
+.profile-hero-content {
+    border-radius: 0.35rem;
+    background: white;
+}
+
+.profile-hero-content h1 {
+    font-size: 2.3rem;
+}
+
+.post-card-header {
+    background: white;
+}
+
+.post-reaction {
+    width: 100%;
+}
+
+.intro-card-header {
+    background: white;
+    border-bottom: none;
+    font-size: 1.8rem;
+}

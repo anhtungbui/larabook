@@ -14,18 +14,22 @@
         {{-- Stylesheets --}}
         <link href={{ asset("css/app.css") }} rel="stylesheet" />
         <link href={{ asset("css/sb-admin.css") }} rel="stylesheet" />
+        <link href={{ asset("css/custom.css") }} rel="stylesheet" />
 
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+        <nav 
+            class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white pl-5 pr-5" 
+            id="sidenavAccordion"
+        >
             <!-- Navbar Brand-->
             <!-- * * Tip * * You can use text or an image for your navbar brand.-->
             <!-- * * * * * * When using an image, we recommend the SVG format.-->
             <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand" href="index.html">Larabook</a>
+            <a class="navbar-brand" href="/">Larabook</a>
             <!-- Navbar Search Input-->
             <!-- * * Note: * * Visible only on and above the md breakpoint-->
             <form class="form-inline mr-auto d-none d-md-block mr-3">
@@ -38,6 +42,88 @@
             </form>
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ml-auto">
+
+                @auth
+                    <a href="{{ route('profile', [auth()->user()->username]) }}" class="d-none d-lg-block pr-3">
+                        {{ auth()->user()->name }}
+                    </a>
+                    <!-- User Dropdown-->
+                    <li class="nav-item dropdown no-caret mr-3 mr-lg-0 dropdown-user">
+                        <a 
+                            class="btn btn-icon btn-transparent-dark dropdown-toggle" 
+                            id="navbarDropdownUserImage" 
+                            href="javascript:void(0);" 
+                            role="button" 
+                            data-toggle="dropdown" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                        >
+                            <img class="img-fluid" src="/storage/{{ $user->profile->avatar_src }}" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                            <h6 class="dropdown-header d-flex align-items-center">
+                                <img class="dropdown-user-img" src="/storage/{{ $user->profile->avatar_src }}" />
+                                <div class="dropdown-user-details">
+                                    <div class="dropdown-user-details-name">Hi {{ auth()->user()->name }}!</div>
+                                </div>
+                            </h6>
+                            <div class="dropdown-divider"></div>
+                            <!-- Profile -->
+                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}">
+                                <div class="dropdown-item-icon"><i class="fa fa-user"></i></div>
+                                Profile
+                            </a>
+                            <!-- Logout -->
+                            <a 
+                                class="dropdown-item" 
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();"
+                            >
+                                <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    <!-- Create Dropdown-->
+                    <li class="nav-item dropdown no-caret pl-lg-1 mr-lg-0 dropdown-user">
+                        <a 
+                            class="btn btn-icon btn-transparent-dark dropdown-toggle" 
+                            id="navbarDropdownUserImage" 
+                            href="javascript:void(0);" 
+                            role="button" 
+                            data-toggle="dropdown" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                        >
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                            <h6 class="dropdown-header d-flex align-items-center">
+                                <div class="dropdown-user-details">
+                                    <div class="dropdown-user-details-name">Create</div>
+                                </div>
+                            </h6>
+                            <div class="dropdown-divider"></div>
+                            <!-- New Post -->
+                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}/posts/create">
+                                <div class="dropdown-item-icon"><i class="fas fa-edit"></i></div>
+                                New Post
+                            </a>
+                            <!-- New Group -->
+                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}/posts/create">
+                                <div class="dropdown-item-icon"><i class="fa fa-users"></i></div>
+                                New Group
+                            </a>
+                            
+                        </div>
+                    </li>
+                    
+                @endauth
+                
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -52,33 +138,17 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                    
                 @endguest
             </ul>
         </nav>
         
-        <main>
+        <main class="pt-5">
             @yield('content')
         </main>
 
         {{-- Scripts --}}
         <script src={{ asset("js/app.js") }}></script>
-        <script src={{ asset("js/sb-admin.js") }}></script> --}}
+        <script src={{ asset("js/sb-admin.js") }}></script>
     </body>
 </html>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -22,9 +23,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($username)
     {
-        //
+        $user = User::where('username', $username)->get();
+        // ddd($user);
+
+        return view('posts.create', ['user' => $user]);
     }
 
     /**

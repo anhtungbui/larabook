@@ -23,9 +23,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/profile', 'layouts.base');
-
-
+// Testing purpose
+Route::view('/profile', 'layouts.base'); 
 
 Route::prefix('/{user:username}')->group(function () {
     Route::get('/', [ProfileController::class, 'show'])->name('profile');
@@ -37,3 +36,5 @@ Route::prefix('/{user:username}')->group(function () {
     Route::put('/posts/{post}', [PostController::class, 'update']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 });
+
+

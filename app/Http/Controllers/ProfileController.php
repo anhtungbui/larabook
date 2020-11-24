@@ -50,9 +50,12 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
+        $posts = $user->posts()->latest()->get();
+        
         return view('profiles.show', [
-            'user' => $user
-            ]);
+                    'user' => $user,
+                    'posts' => $posts,
+                ]);
     }
 
     /**

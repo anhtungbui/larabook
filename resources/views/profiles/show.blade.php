@@ -14,7 +14,7 @@
         <x-profile-sidebar :user="$user" />
 
         <!-- Right column -->
-        <x-profile-timeline :user="$user" />
+        <x-profile-timeline :user="$user" :posts="$posts" />
     </div>
 </div>    
 @endsection

@@ -2,7 +2,7 @@
 <section class="col-xl-4">
     <!-- Profile Details card-->
     <div class="card shadow-sm">
-        <div class="card-header intro-card-header">Intro</div>
+        <div class="card-header intro-card-header text-dark">Intro</div>
         <div class="card-body">
             <!-- Profile picture image-->
             <div class="text-center">

@@ -14,7 +14,11 @@
 }
 
 .post-card-header {
-    /* background: salmon; */
+    background: white;
+}
+
+.post-image {
+    max-height: 350px;
 }
 
 .post-reaction {
@@ -24,5 +28,6 @@
 .intro-card-header {
     background: white;
     border-bottom: none;
+    /* color: black; */
     font-size: 1.8rem;
 }

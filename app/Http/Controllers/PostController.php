@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Storage;
 
 class PostController extends Controller
 {
+    /**
+     * Helpers 
+     */
+    private function getPost($postId)
+    {
+        return Post::find($postId);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +48,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => ['required'],
+            'image_upload' => ['image'],
+        ]);
+
+        if ($request->has('image_upload')) {
+            $imagePath = $request->file('image_upload')->store('uploads', 'public');
+            $validatedData['image_src'] = $imagePath;
+        } 
+
+        auth()->user()->posts()->create($validatedData);
+
+        return redirect(route('profile', [auth()->user()->username] ))
+                ->with('status', 'Awesome! A new Post has been successfully created');
+
     }
 
     /**
@@ -48,8 +71,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($username, $post)
+    public function show($username, $postId)
     {
+        $post = $this->getPost($postId);
         return $post;
     }
 

@@ -34,7 +34,7 @@
             <!-- * * Note: * * Visible only on and above the md breakpoint-->
             <form class="form-inline mr-auto d-none d-md-block mr-3">
                 <div class="input-group input-group-joined input-group-solid">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search Larabook" aria-label="Search" />
                     <div class="input-group-append">
                         <div class="input-group-text"><i data-feather="search"></i></div>
                     </div>
@@ -45,57 +45,16 @@
 
                 @auth
                     <a
-                        class="btn btn-light rounded-pill mr-2 d-none d-lg-block"
+                        class="btn btn-light rounded-pill d-none d-lg-block"
                         href="{{ route('profile', [auth()->user()->username]) }}"
                         data-toggle="tooltip" 
                         data-placement="bottom" 
-                        title="To My Profile"
+                        title="To Your Profile"
                     >
                         {{ auth()->user()->name }}
                     </a>
-                    <!-- User Dropdown-->
-                    <li class="nav-item dropdown no-caret mr-3 mr-lg-0 dropdown-user">
-                        <a 
-                            class="btn btn-icon btn-transparent-dark dropdown-toggle" 
-                            id="navbarDropdownUserImage" 
-                            href="javascript:void(0);" 
-                            role="button" 
-                            data-toggle="dropdown" 
-                            aria-haspopup="true" 
-                            aria-expanded="false"
-                        >
-                            <img class="img-fluid" src="/storage/{{ $user->profile->avatar_src }}" />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-                            <h6 class="dropdown-header d-flex align-items-center">
-                                <img class="dropdown-user-img" src="/storage/{{ $user->profile->avatar_src }}" />
-                                <div class="dropdown-user-details">
-                                    <div class="dropdown-user-details-name">Hi {{ auth()->user()->name }}!</div>
-                                </div>
-                            </h6>
-                            <div class="dropdown-divider"></div>
-                            <!-- Profile -->
-                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}">
-                                <div class="dropdown-item-icon"><i class="fa fa-user"></i></div>
-                                Profile
-                            </a>
-                            <!-- Logout -->
-                            <a 
-                                class="dropdown-item" 
-                                href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();"
-                            >
-                                <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                                Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
                     <!-- Create Dropdown-->
-                    <li class="nav-item dropdown no-caret pl-lg-1 mr-lg-0 dropdown-user">
+                    <li class="nav-item dropdown no-caret pl-lg-1 mr-lg-1 dropdown-user">
                         <a 
                             class="btn btn-icon btn-light dropdown-toggle" 
                             id="navbarDropdownUserImage" 
@@ -127,7 +86,47 @@
                             
                         </div>
                     </li>
-                    
+                    <!-- User Dropdown-->
+                    <li class="nav-item dropdown no-caret mr-3 mr-lg-0 dropdown-user">
+                        <a 
+                            class="btn btn-icon btn-transparent-dark dropdown-toggle" 
+                            id="navbarDropdownUserImage" 
+                            href="javascript:void(0);" 
+                            role="button" 
+                            data-toggle="dropdown" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                        >
+                            <img class="img-fluid" src="/storage/{{ auth()->user()->profile->avatar_src }}" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                            <h6 class="dropdown-header d-flex align-items-center">
+                                <img class="dropdown-user-img" src="/storage/{{ auth()->user()->profile->avatar_src }}" />
+                                <div class="dropdown-user-details">
+                                    <div class="dropdown-user-details-name">Hi {{ auth()->user()->name }}!</div>
+                                </div>
+                            </h6>
+                            <div class="dropdown-divider"></div>
+                            <!-- Profile -->
+                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}">
+                                <div class="dropdown-item-icon"><i class="fa fa-user"></i></div>
+                                Profile
+                            </a>
+                            <!-- Logout -->
+                            <a 
+                                class="dropdown-item" 
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();"
+                            >
+                                <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>     
                 @endauth
                 
                 <!-- Authentication Links -->

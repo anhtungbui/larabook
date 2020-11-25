@@ -60,7 +60,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <form 
-                                action="{{ route('profile', [$user->username]) }}/posts/{{ $post->id}}/edit"
+                                action="{{ route('profile', [$user->username]) }}/posts/{{ $post->id }}/edit"
                                 method="GET"
                                 class="dropdown-item"
                             >

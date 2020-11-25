@@ -12,10 +12,7 @@ class PostController extends Controller
     /**
      * Helpers 
      */
-    private function getPost($postId)
-    {
-        return Post::find($postId);
-    }
+
 
     /**
      * Display a listing of the resource.
@@ -32,12 +29,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($username)
+    public function create(User $user)
     {
-        $user = User::where('username', $username)->get();
-        // ddd($user);
-
-        return view('posts.create', ['user' => $user]);
+        return view('posts.create', compact('user'));
     }
 
     /**
@@ -61,7 +55,7 @@ class PostController extends Controller
         auth()->user()->posts()->create($validatedData);
 
         return redirect(route('profile', [auth()->user()->username] ))
-                ->with('status', 'Awesome! A new Post has been successfully created');
+                ->with('status', 'The new Post has been successfully created');
 
     }
 
@@ -71,9 +65,8 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($username, $postId)
+    public function show(User $user, Post $post)
     {
-        $post = $this->getPost($postId);
         return $post;
     }
 
@@ -83,9 +76,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(User $user, Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -95,9 +88,24 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, User $user, Post $post)
     {
-        //
+        $validatedData = $request->validate([ 
+                'content' => ['required'], 
+            ]);
+
+        // if ($post->has('image_src')) {
+        //     $validatedData['image_src'] = $post->
+        // }
+        
+        if (auth()->check()) {
+            $post->update($validatedData);
+
+            return redirect(route('profile', [auth()->user()->username] ))
+                    ->with('status', 'The post has been successfully updated');
+
+        }
+        
     }
 
     /**
@@ -106,13 +114,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($username, $postId)
+    public function destroy(User $user, Post $post)
     {
-        $post = Post::find($postId); 
         if (auth()->check()) {
             $post->delete();
             
-            return back()->with('status', 'The post was successfully deleted');
+            return back()->with('status', 'The post has been successfully deleted');
         } 
     }
 }

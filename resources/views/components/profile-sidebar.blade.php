@@ -51,7 +51,7 @@
         {{-- <div class="card-body d-flex flex-wrap no-gutters pt-2"> save for grid-pictures --}}
         <div class="card-body d-flex flex-wrap justify-content-space pt-2">
             {{-- sample --}}
-            <div class="avatar avatar-xxl">
+            <div class="avatar avatar-xxl" aria-label="Hey tooltip!" data-microtip-position="top" role="tooltip">
                 <a href="#">
                     <img src="/storage/uploads/NsJ2iTbVK9wB4eDbNo1E8pUsSboimLGRJZ6ee5Cd.jpeg" class="avatar-img img-fluid" alt="">
                 </a>

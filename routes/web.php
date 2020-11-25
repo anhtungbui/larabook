@@ -35,6 +35,15 @@ Route::prefix('/{user:username}')->group(function () {
     Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
     Route::put('/posts/{post}', [PostController::class, 'update']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+
+    Route::prefix('/posts/{post}')->group(function () {
+        Route::get('/comments/create', [CommentController::class, 'create']);
+        Route::post('/comments', [CommentController::class, 'store']);
+        Route::get('/comments/{comment}', [CommentController::class, 'show'])->name('comments.show');
+        Route::get('/comments/{comment}/edit', [CommentController::class, 'edit']);
+        Route::put('/comments/{comment}', [CommentController::class, 'update']);
+        Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+    });
 });
 
 

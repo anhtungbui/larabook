@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "autosize": "^4.0.2"
+        "autosize": "^4.0.2",
+        "microtip": "^0.2.2"
     }
 }

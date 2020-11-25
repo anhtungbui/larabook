@@ -55,7 +55,7 @@ class PostController extends Controller
         auth()->user()->posts()->create($validatedData);
 
         return redirect(route('profile', [auth()->user()->username] ))
-                ->with('status', 'The new Post has been successfully created');
+                ->with('status', 'Post created');
 
     }
 
@@ -99,7 +99,7 @@ class PostController extends Controller
             $post->update($validatedData);
 
             return redirect(route('profile', [auth()->user()->username] ))
-                    ->with('status', 'The post has been successfully updated');
+                    ->with('status', 'Post updated');
 
         }
         
@@ -117,7 +117,7 @@ class PostController extends Controller
             $post->delete();
             
             return redirect(route('profile', [auth()->user()->username] ))
-                ->with('status', 'The post has been successfully deleted');
+                ->with('status', 'Post deleted');
         } 
     }
 }

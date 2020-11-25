@@ -25,6 +25,10 @@
     line-height: 1.5;
 }
 
+.pre-line {
+    white-space: pre-line;
+}
+
 .no-gap {
     padding-left: 2.5px;
     padding-right: 2.5px;

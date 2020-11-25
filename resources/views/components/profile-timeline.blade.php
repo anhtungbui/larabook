@@ -2,7 +2,7 @@
     <!-- Hidden Alerts -->
     @if (session("status"))
         <div class="alert alert-success shadow-sm" role="alert">
-            {{ session("status") }}
+            <i class="fas fa-check-circle mr-2"></i>{{ session("status") }}
         </div>
     @endif
     <!-- What's on your mind Card -->
@@ -103,7 +103,7 @@
                 @endauth
             </div>
             <div class="card-body">
-                <div class="pb-3" style="white-space: pre-line;">{{ $post->content }}</div>
+                <div class="pb-3 pre-line">{{ $post->content }}</div>
                 <!-- Photo attached -->
                 @if ($post->image_src)
                     <div class="text-center mb-2">
@@ -123,14 +123,59 @@
                             <a href="#" class="btn btn-link mr-2">Share</a>
                         {{-- </div> --}}
                     </div>
-                    <form action="" method="POST">
-                        @csrf
-
-                        <div class="form-group">
-                            <textarea type="text" class="form-control" rows="1" placeholder="Write a comment..."></textarea>
-                        </div>
-                    </form>    
                 @endauth
+                <!-- Comments -->
+                @foreach ($post->comments as $comment)
+                    <div class="d-flex">
+                        <div class="col-1">
+                            <div class="avatar avatar-xl">
+                                <img class="avatar-img img-fluid" src="/storage/{{ $user->profile->avatar_src }}">
+                            </div>
+                        </div>
+                        <div class="col-11">
+                            <div class="border bg-gray-100 rounded py-2 pl-3">
+                                <a href="#" class="text-dark font-weight-700">{{ $comment->user->name }}</a>
+                                <div class="pre-line">{{ $comment->content }}</div>
+
+                            </div>
+                            <small class="text-muted ml-3">
+                                {{ date('d-m-Y', strtotime($comment->updated_at)) }} at {{ date('H:i', strtotime($comment->updated_at)) }}
+                            </small>
+                        </div>
+                        <!-- ... button maybe -->
+                        {{-- <div class="col-1">
+                        </div> --}}
+                    </div>
+                @endforeach
+                <!-- Comment input box -->
+                @auth
+                    <form 
+                        action="{{ route('comments.store', [$user->username, $post->id]) }}" 
+                        method="POST">
+
+                        @csrf
+                        <div class="form-row pt-2">
+                            <div class="col-10">
+                                <textarea 
+                                    type="text" 
+                                    name="comment" 
+                                    class="form-control @error('comment') is-invalid @enderror" 
+                                    rows="1" 
+                                    placeholder="Write a comment..."></textarea>
+
+                                {{-- @error('comment')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror --}}
+                            </div>
+                            <div class="col-2">
+                                <input type="submit" class="btn btn-primary btn-block" value="Post">
+
+                            </div>
+                        </div>
+                    </form>
+                @endauth    
             </div>
         </div>                
     @endforeach

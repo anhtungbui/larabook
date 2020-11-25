@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -33,9 +35,17 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user, Post $post)
     {
-        //
+        $validatedData = $request->validate(['comment' => ['required']]);
+        
+        Comment::create([
+            'post_id' => $post->id,
+            'user_id' => auth()->user()->id,
+            'content' => $validatedData['comment'],
+        ]);
+
+        return back()->with('status', 'Comment posted');
     }
 
     /**

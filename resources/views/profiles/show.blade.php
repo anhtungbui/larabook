@@ -8,7 +8,7 @@
     
     <!-- Profile page navigation-->
     <x-profile-navbar :user="$user" />
-
+    
     <div class="row">
         <!-- Left column -->
         <x-profile-sidebar :user="$user" />
@@ -16,5 +16,6 @@
         <!-- Right column -->
         <x-profile-timeline :user="$user" :posts="$posts" />
     </div>
+
 </div>    
 @endsection

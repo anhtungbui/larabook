@@ -25,6 +25,23 @@
     line-height: 1.5;
 }
 
+.no-gap {
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+    padding-bottom: 5px;
+}
+
+.card-grid {
+    border: 1px solid red;
+    height: 400px;
+}
+
+.square-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
 .post-reaction {
     width: 100%;
 }

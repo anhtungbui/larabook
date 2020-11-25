@@ -67,7 +67,8 @@ class PostController extends Controller
      */
     public function show(User $user, Post $post)
     {
-        return $post;
+        // ddd($post);
+        return view('posts.show', compact('user', 'post'));
     }
 
     /**
@@ -93,10 +94,6 @@ class PostController extends Controller
         $validatedData = $request->validate([ 
                 'content' => ['required'], 
             ]);
-
-        // if ($post->has('image_src')) {
-        //     $validatedData['image_src'] = $post->
-        // }
         
         if (auth()->check()) {
             $post->update($validatedData);
@@ -119,7 +116,8 @@ class PostController extends Controller
         if (auth()->check()) {
             $post->delete();
             
-            return back()->with('status', 'The post has been successfully deleted');
+            return redirect(route('profile', [auth()->user()->username] ))
+                ->with('status', 'The post has been successfully deleted');
         } 
     }
 }

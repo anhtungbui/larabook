@@ -11,7 +11,7 @@
             <div class="card-body d-flex justify-content-between">
                 <div class="d-flex align-items-center">
                     <div class="avatar avatar-xl mr-3">
-                        <img src="storage/{{ $user->profile->avatar_src }}" alt="avatar" class="avatar-img img-fluid"/>
+                        <img src="/storage/{{ $user->profile->avatar_src }}" alt="avatar" class="avatar-img img-fluid"/>
                     </div>
                     <div>
                     <div>What's on your mind?</div>
@@ -33,17 +33,21 @@
     @foreach ($posts as $post)
         <div class="card shadow-sm mb-4">
             <div class="card-header post-card-header d-flex justify-content-between">
+                <!-- Card header w/ avatar -->
                 <div class="d-flex align-items-center">
                     <div class="avatar avatar-xl mr-3">
-                        <img src="storage/{{ $user->profile->avatar_src }}" alt="avatar" class="avatar-img img-fluid"/>
+                        <img src="/storage/{{ $user->profile->avatar_src }}" alt="avatar" class="avatar-img img-fluid"/>
                     </div>
                     <div>
                         <div>
-                            <a href="{{ route('profile', [$user->username]) }}">{{ $user->name }}</a>
+                            <a href="{{ route('profile', [$user->username]) }}" class="text-dark">{{ $user->name }}</a>
                         </div>
-                        <small class="text-muted">{{ date('d-m-Y H:i', strtotime($post->updated_at)) }}</small>
+                        <small>
+                            <a href="{{ route('posts.show', [$user->username, $post->id]) }}" class="text-decoration-none text-muted">
+                                {{ date('d-m-Y', strtotime($post->updated_at)) }} at {{ date('H:i', strtotime($post->updated_at)) }}
+                            </a>
+                        </small>
                     </div>
-
                 </div>
 
                 @auth
@@ -64,7 +68,7 @@
                                 method="GET"
                                 class="dropdown-item"
                             >
-                                <input type="submit" class="btn btn-link text-decoration-none" value="Edit Post">
+                                <input type="submit" class="btn btn-link" value="Edit Post">
                             </form>
                             <form 
                                 action="{{ route('posts.show', [$user->username, $post]) }}"

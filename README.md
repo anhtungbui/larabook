@@ -13,7 +13,7 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
     -   Log in ✔️
     -   Password recovery ✔️
 -   Posts
-    -   CRUD
+    -   CRUD ✔️
     -   Like/unlike posts
     -   Comment
 -   Group

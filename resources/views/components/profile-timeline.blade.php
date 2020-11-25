@@ -99,7 +99,7 @@
                 @endauth
             </div>
             <div class="card-body">
-                <div class="pb-3">{{ $post->content }}</div>
+                <div class="pb-3" style="white-space: pre-line;">{{ $post->content }}</div>
                 <!-- Photo attached -->
                 @if ($post->image_src)
                     <div class="text-center mb-2">
@@ -123,7 +123,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Write a comment...">
+                            <textarea type="text" class="form-control" rows="1" placeholder="Write a comment..."></textarea>
                         </div>
                     </form>    
                 @endauth

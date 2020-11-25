@@ -21,6 +21,10 @@
     max-height: 350px;
 }
 
+.form-control {
+    line-height: 1.5;
+}
+
 .post-reaction {
     width: 100%;
 }

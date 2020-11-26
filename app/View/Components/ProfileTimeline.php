@@ -8,16 +8,18 @@ class ProfileTimeline extends Component
 {
     public $user;
     public $posts;
+    public $likedPosts;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($user, $posts)
+    public function __construct($user, $posts, $likedPosts)
     {
         $this->user = $user;
         $this->posts = $posts;
+        $this->likedPosts = $likedPosts;
     }
 
     /**

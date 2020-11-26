@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        {{-- CSRF Token --}}
+        <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        
         <title>Larabook</title>
 
-        {{-- Stylesheets --}}
+        <!-- Stylesheets -->
         <link href={{ asset("css/app.css") }} rel="stylesheet" />
         <link href={{ asset("css/sb-admin.css") }} rel="stylesheet" />
         <link href={{ asset("css/custom.css") }} rel="stylesheet" />
@@ -21,7 +21,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="nav-fixed">
-        <nav 
+        <div id="app">
+            <nav 
             class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white pl-5 pr-5" 
             id="sidenavAccordion"
         >
@@ -152,7 +153,8 @@
             @yield('content')
         </main>
 
-        {{-- Scripts --}}
+        </div>
+        <!-- Scripts -->
         <script src={{ asset("js/app.js") }}></script>
         <script src={{ asset("js/sb-admin.js") }}></script>
     </body>

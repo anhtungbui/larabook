@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class LikeController extends Controller
 {
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -37,39 +35,34 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user, Post $post)
+    {
+        Like::create([
+            'post_id' => $post->id,
+            'user_id' => auth()->user()->id
+            ]);
+
+        return 201;
+    }
+        
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Like  $like
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Like $like)
     {
         //
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        $posts = $user->posts()->latest()->get();
-
-        // $likedPosts = $user->likes()->get();
-        $likedPosts = auth()->user()->likes()->get()->pluck('post_id');
-        // ddd($likedPosts);
-        
-        return view('profiles.show', [
-                    'user' => $user,
-                    'posts' => $posts,
-                    'likedPosts' =>$likedPosts
-                ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Like $like)
     {
         //
     }
@@ -78,10 +71,10 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Like $like)
     {
         //
     }
@@ -89,11 +82,14 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $user, Post $post)
     {
-        //
+        $like = Like::where('post_id', $post)->get();
+        $like->detete();
+
+        return 'OK';
     }
 }

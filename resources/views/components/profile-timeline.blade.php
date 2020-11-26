@@ -109,19 +109,45 @@
                     <div class="text-center mb-2">
                         <img src="/storage/{{ $post->image_src }}" class="post-image" alt="user upload">
                     </div>
-                @endif
+                @endif   
                 <!-- Post reaction -->
                 @auth
                     <div class="post-reaction pb-2 d-flex justify-content-around align-items-center">
-                        {{-- <div class="post-reaction-counter border "> --}}
-                            {{-- @if (likecount > 0) TODO --}}
-                            <div>19 <i class="fa fa-thumbs-up"></i></div>
-                            <div>19 <i class="fa fa-comments"></i></div>
+                        <div>{{ $post->likes->count() }} <i class="fa fa-thumbs-up"></i></div>
+                        <div>{{ $post->comments->count() }}<i class="fa fa-comments ml-1"></i></div>
                         
-                            <a href="#" class="btn btn-link mr-2">Like</a>
-                            <a href="#" class="btn btn-link mr-2">Comment</a>
-                            <a href="#" class="btn btn-link mr-2">Share</a>
-                        {{-- </div> --}}
+                        <!-- Like button -->
+                        <like-button 
+                            username="{{ $user->username }}"
+                            post="{{ $post->id }}"
+                            liked="{{ $likedPosts }}"
+                            count="{{ $post->likes->count() }}"
+                        ></like-button>
+
+
+                        <form 
+                            action=""
+                            method="POST"
+                        >
+                            @csrf
+                            <input type="submit" class="btn btn-light rounded-pill" value="Like">
+                        </form>
+                        <!-- Comment button -->
+                        <form 
+                            action=""
+                            method="POST"
+                        >
+                            @csrf
+                            <input type="submit" class="btn btn-light rounded-pill" value="Comment">
+                        </form>
+                        <!-- Share button -->
+                        <form 
+                            action=""
+                            method="POST"
+                        >
+                            @csrf
+                            <input type="submit" class="btn btn-light rounded-pill" value="Share">
+                        </form>
                     </div>
                 @endauth
                 <!-- Comments -->

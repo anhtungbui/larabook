@@ -6,7 +6,7 @@
         <div class="card-body">
             <!-- Profile picture image-->
             <div class="text-center">
-                <img class="img-account-profile rounded-circle mb-2 text-center" src="storage/{{ $user->profile->avatar_src }}" alt="" />
+                <img class="img-account-profile rounded-circle mb-2 text-center" src="/storage/{{ $user->profile->avatar_src }}" alt="" />
             </div>
             <!-- Profile picture help block-->
             <!-- Profile details -->

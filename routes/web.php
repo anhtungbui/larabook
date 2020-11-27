@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PhotoController;
 
 use App\Models\Post;
 use App\Models\Like;
@@ -69,6 +70,9 @@ Route::prefix('/{user:username}')->group(function () {
     
     
     });
+
+    /** Profile Photos */
+    Route::get('/photos', [PhotoController::class, 'index']);
 });
 
 

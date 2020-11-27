@@ -6,7 +6,7 @@
         <main>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                         <div class="card shadow-sm mb-4">
                             <div class="card-header post-card-header d-flex justify-content-between">
                                 <!-- Card header w/ avatar -->
@@ -83,7 +83,7 @@
                                 <!-- Photo attached -->
                                 @if ($post->image_src)
                                     <div class="text-center mb-2">
-                                        <img src="/storage/{{ $post->image_src }}" class="post-image" alt="user upload">
+                                        <img src="/storage/{{ $post->image_src }}" class="img-fluid" alt="user uploaded photo">
                                     </div>
                                 @endif
                                 <!-- Post reaction -->

@@ -117,12 +117,12 @@
                         <div>{{ $post->comments->count() }}<i class="fa fa-comments ml-1"></i></div>
                         
                         <!-- Like button -->
-                        <like-button 
+                        {{-- <like-button 
                             username="{{ $user->username }}"
                             post="{{ $post->id }}"
                             liked="{{ $likedPosts }}"
                             count="{{ $post->likes->count() }}"
-                        ></like-button>
+                        ></like-button> --}}
 
 
                         <form 

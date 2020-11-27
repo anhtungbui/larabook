@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\SearchController;
 
 use App\Models\Post;
 use App\Models\Like;
@@ -29,6 +30,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/** Search */
+Route::get('/search', [SearchController::class, 'index']);
+// Route::post('/search', [SearchController::class, 'index']);
+
 // Testing purpose
 Route::view('/profile', 'layouts.base'); 
 
@@ -41,6 +46,7 @@ Route::get('/posts/{post}/likes', function (Post $post) {
 Route::prefix('/{user:username}')->group(function () {
     Route::get('/', [ProfileController::class, 'show'])->name('profile');
 
+    /** Posts */
     Route::get('/posts/create', [PostController::class, 'create']);
     Route::post('/posts', [PostController::class, 'store']);
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
@@ -49,30 +55,23 @@ Route::prefix('/{user:username}')->group(function () {
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
     Route::prefix('/posts/{post}')->group(function () {
-        /**
-         * Comments routing
-         */
-        Route::get('/comments/create', [CommentController::class, 'create'])
-                    ->name('comments.create');
-        Route::post('/comments', [CommentController::class, 'store'])
-                    ->name('comments.store');
-        Route::get('/comments/{comment}', [CommentController::class, 'show'])
-                    ->name('comments.show');
+
+        /** Comments */
+        Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');
+        Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+        Route::get('/comments/{comment}', [CommentController::class, 'show'])->name('comments.show');
         Route::get('/comments/{comment}/edit', [CommentController::class, 'edit']);
         Route::put('/comments/{comment}', [CommentController::class, 'update']);
         Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
         
-        /**
-         * Like routing
-         */
+        /** Like */
         Route::post('/like', [LikeController::class, 'store']);
         Route::delete('/unlike', [LikeController::class, 'destroy']);
     
     
     });
 
-    /** Profile Photos */
+    /** Photos */
     Route::get('/photos', [PhotoController::class, 'index']);
 });
-
 

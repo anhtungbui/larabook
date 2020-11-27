@@ -33,13 +33,18 @@
             <a class="navbar-brand" href="/">Larabook</a>
             <!-- Navbar Search Input-->
             <!-- * * Note: * * Visible only on and above the md breakpoint-->
-            <form class="form-inline mr-auto d-none d-md-block mr-3">
-                <div class="input-group input-group-joined input-group-solid">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search Larabook" aria-label="Search" />
-                    <div class="input-group-append">
-                        <div class="input-group-text"><i data-feather="search"></i></div>
+            <form 
+                class="form-inline mr-auto d-none d-md-block mr-3"
+                action="/search"
+                method="GET"
+                >
+                    @csrf
+                    <div class="input-group input-group-joined input-group-solid">
+                        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search Larabook" aria-label="Search" />
+                        <div class="input-group-append">
+                            <div class="input-group-text"><i data-feather="search"></i></div>
+                        </div>
                     </div>
-                </div>
             </form>
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ml-auto">

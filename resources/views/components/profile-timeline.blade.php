@@ -107,7 +107,7 @@
                 <!-- Photo attached -->
                 @if ($post->image_src)
                     <div class="text-center mb-2">
-                        <img src="/storage/{{ $post->image_src }}" class="post-image" alt="user upload">
+                        <img src="/storage/{{ $post->image_src }}" class="img-fluid" alt="user upload">
                     </div>
                 @endif   
                 <!-- Post reaction -->

@@ -15,7 +15,9 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
 -   Posts
     -   CRUD ✔️
     -   Like/unlike posts
-    -   Comment
+    -   Comment ✔️
+-   Search
+    -   By name ✔️
 -   Group
     -   CRUD
     -   Join group

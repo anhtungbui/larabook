@@ -2,13 +2,16 @@
 <section class="col-xl-4 d-none d-lg-block">
     <!-- Profile Details card-->
     <div class="card shadow-sm mb-4">
-        <div class="card-header intro-card-header text-dark">Intro</div>
+        <div class="card-header intro-card-header text-dark pb-2">Intro</div>
         <div class="card-body">
-            <!-- Profile picture image-->
-            <div class="text-center">
-                <img class="img-account-profile rounded-circle mb-2 text-center" src="/storage/{{ $user->profile->avatar_src }}" alt="" />
+            <!-- Profile avatar -->
+            <div class="text-center profile-avatar">
+                <img 
+                    class="profile-avatar__image img-fluid rounded-circle mb-2 text-center" 
+                    src="/storage/{{ $user->profile->avatar_src }}" 
+                    alt="user avatar" 
+                />
             </div>
-            <!-- Profile picture help block-->
             <!-- Profile details -->
             @if ($user->profile->location)
                 <div class="pt-3">
@@ -33,7 +36,7 @@
 
             @auth
                 <div class="pt-3">
-                    <a href="" class="btn btn-light btn-block">Edit Profile</a>
+                    <a href="{{ route('profile', auth()->user()->username) }}/edit" class="btn btn-light btn-block">Edit Profile</a>
                 </div>
             @endauth
 

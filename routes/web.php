@@ -37,14 +37,19 @@ Route::get('/search', [SearchController::class, 'index']);
 // Testing purpose
 Route::view('/profile', 'layouts.base'); 
 
+Route::get('/welcome', [ProfileController::class, 'welcome'])->middleware('auth'); 
+
 Route::get('/posts/{post}/likes', function (Post $post) {
     $postReaction = $post->likes->all();
     return $postReaction;
 });
 
+/** Profile */
 
 Route::prefix('/{user:username}')->group(function () {
     Route::get('/', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/edit', [ProfileController::class, 'edit']);
+    Route::put('/', [ProfileController::class, 'update']);
 
     /** Posts */
     Route::get('/posts/create', [PostController::class, 'create']);

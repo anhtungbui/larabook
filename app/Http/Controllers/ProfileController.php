@@ -39,7 +39,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -71,7 +71,7 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('profiles.edit', compact('user'));
     }
 
     /**
@@ -83,7 +83,24 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'image_upload' => ['image'],
+            'bio' => ['max:100'],
+            'website' => ['nullable', 'url'],
+            'location' => ['max:50'],
+            'hometown' => ['max:50'],
+        ]);
+
+        if (isset($validatedData['image_upload'])) {
+            $image_path = $validatedData['image_upload']->store('avatars', 'public');
+            $validatedData['avatar_src'] = $image_path; 
+            unset($validatedData['image_upload']);
+        }
+
+        User::find(auth()->user()->id)->profile->update($validatedData);
+
+        return redirect(route('profile', [auth()->user()->username]))
+                                        ->with('status', 'Profile updated');
     }
 
     /**
@@ -95,5 +112,12 @@ class ProfileController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function welcome()
+    {
+        $user = User::find(auth()->user()->id);
+
+        return view('profiles.edit', compact('user'));
     }
 }

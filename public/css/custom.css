@@ -56,3 +56,9 @@
     /* color: black; */
     font-size: 1.8rem;
 }
+
+.profile-avatar__image {
+    height: 15rem;
+    width: 15rem;
+    object-fit: cover;
+}

@@ -7,6 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\FollowController;
 
 use App\Models\Post;
 use App\Models\Like;
@@ -44,12 +45,15 @@ Route::get('/posts/{post}/likes', function (Post $post) {
     return $postReaction;
 });
 
-/** Profile */
 
 Route::prefix('/{user:username}')->group(function () {
+    /** Profile */
     Route::get('/', [ProfileController::class, 'show'])->name('profile');
     Route::get('/edit', [ProfileController::class, 'edit']);
     Route::put('/', [ProfileController::class, 'update']);
+
+    Route::post('/follow', [FollowController::class, 'store']);
+    Route::post('/unfollow', [FollowController::class, 'destroy']);
 
     /** Posts */
     Route::get('/posts/create', [PostController::class, 'create']);

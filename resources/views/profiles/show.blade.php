@@ -7,7 +7,7 @@
     <x-profile-hero :user="$user" />
     
     <!-- Profile page navigation-->
-    <x-profile-navbar :user="$user" />
+    <x-profile-navbar :user="$user" :followingUsers="$followingUsers" />
     
     <div class="row">
         <!-- Left column -->

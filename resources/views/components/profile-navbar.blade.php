@@ -11,13 +11,27 @@
             href="{{ route('profile', [$user->username]) }}/photos">Photos
         </a>
     </div>
-    <div class="mr-4 mb-2">
-        <form action="" method="POST">
-            {{-- <div class="form-group"> --}}
+    <div class="mr-4 mb-2 d-flex">
+        
+        @if (auth()->id() !== $user->id)
+            <!-- Add friend -->
+            <form action="" method="POST">
+                    <input type="submit" class="btn btn-success" value="Add Friend">
+            </form>
+            <!-- Follow -->
+            @if ($followingUsers->contains($user->id))
+                <form action="{{ route('profile', [$user->username]) }}/unfollow" method="POST" class="pl-2">
+                    @csrf
+                    <input type="submit" class="btn btn-outline-danger" value="Unfollow">
+                </form>
+            @else
+                <form action="{{ route('profile', [$user->username]) }}/follow" method="POST" class="pl-2">
+                    @csrf
+                    <input type="submit" class="btn btn-outline-success" value="Follow">
+                </form>
+            @endif
+        @endif
 
-                <input type="submit" class="btn btn-success" value="Add Friend">
-            {{-- </div> --}}
-        </form>
     </div>
 </nav>
 <hr class="mt-0 mb-4" />

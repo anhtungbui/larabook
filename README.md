@@ -12,9 +12,13 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
     -   Sign up ✔️
     -   Log in ✔️
     -   Password recovery ✔️
+-   Profile
+    -   Update details ✔️
+    -   Add friends
+    -   Follow/unfollow ✔️
 -   Posts
     -   CRUD ✔️
-    -   Like/unlike posts
+    -   Like/unlike
     -   Comment ✔️
 -   Search
     -   By name ✔️

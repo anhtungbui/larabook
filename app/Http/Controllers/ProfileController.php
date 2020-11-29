@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Arr;
 
 class ProfileController extends Controller
 {
@@ -55,11 +56,14 @@ class ProfileController extends Controller
         // $likedPosts = $user->likes()->get();
         $likedPosts = auth()->user()->likes()->get()->pluck('post_id');
         // ddd($likedPosts);
-        
+
+        $followingUsers = auth()->user()->follows;
+
         return view('profiles.show', [
                     'user' => $user,
                     'posts' => $posts,
-                    'likedPosts' =>$likedPosts
+                    'likedPosts' =>$likedPosts,
+                    'followingUsers' => $followingUsers
                 ]);
     }
 

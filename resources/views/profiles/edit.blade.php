@@ -75,13 +75,19 @@
                                     </div>
                                     <!-- Form group (image) -->
                                     <div class="form-group">
-                                        <label for="image_src">
+                                        <label for="image_upload">
                                             <i class="fas fa-camera ml-1 mr-2"></i>
-                                            Upload your avatar (Optional)
+                                            Upload an avatar (Optional)
                                         </label>
                                         <input type="file" class="form-control-file" name="image_upload" id="image_upload">
                                     </div>
-                                    <!-- Form Group (create account submit)-->
+                                    <div class="form-group">
+                                        <label for="cover_image_upload">
+                                            <i class="fas fa-camera ml-1 mr-2"></i>
+                                            Upload a cover image (Optional)
+                                        </label>
+                                        <input type="file" class="form-control-file" name="cover_image_upload" id="cover_image_upload">
+                                    </div>
                                     <div class="form-group mt-4 mb-0">
                                         <button type="submit" class="btn btn-success btn-block">Save</button>
                                     </div>

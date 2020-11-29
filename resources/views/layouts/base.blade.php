@@ -40,10 +40,10 @@
                 >
                     @csrf
                     <div class="input-group input-group-joined input-group-solid">
-                        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search Larabook" aria-label="Search" />
-                        <div class="input-group-append">
-                            <div class="input-group-text"><i data-feather="search"></i></div>
+                        <div class="input-group-text border-0 pr-0">
+                            <i data-feather="search"></i>
                         </div>
+                        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search Larabook" aria-label="Search" />
                     </div>
             </form>
             <!-- Navbar Items-->
@@ -103,11 +103,11 @@
                             aria-haspopup="true" 
                             aria-expanded="false"
                         >
-                            <img class="img-fluid" src="/storage/{{ auth()->user()->profile->avatar_src }}" />
+                            <img class="img-fluid" src="/storage/{{ auth()->user()->profile->avatar_image }}" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                             <h6 class="dropdown-header d-flex align-items-center">
-                                <img class="dropdown-user-img" src="/storage/{{ auth()->user()->profile->avatar_src }}" />
+                                <img class="dropdown-user-img" src="/storage/{{ auth()->user()->profile->avatar_image }}" />
                                 <div class="dropdown-user-details">
                                     <div class="dropdown-user-details-name">Hi {{ auth()->user()->name }}!</div>
                                 </div>

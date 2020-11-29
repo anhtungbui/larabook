@@ -8,7 +8,7 @@
             <!-- Left column -->
             <h2>Search results for </h2>
             <div class="h2 font-weight-700">{{ $query }}</div>
-            <small>{{ $users->count() }} found</small>
+            <small>{{ $users->count() }} @choice('person|people', $users->count()) found</small>
         </div>
 
         <!-- Right column -->
@@ -21,7 +21,7 @@
                         <div class="d-flex align-items-center">
                             <div class="avatar avatar-xl mr-3">
                                 <img 
-                                    src="/storage/{{ $user->profile->avatar_src }}" 
+                                    src="/storage/{{ $user->profile->avatar_image }}" 
                                     alt="avatar" 
                                     class="avatar-img img-fluid"
                                 />

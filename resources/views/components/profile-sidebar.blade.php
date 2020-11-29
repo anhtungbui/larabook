@@ -8,7 +8,7 @@
             <div class="text-center profile-avatar">
                 <img 
                     class="profile-avatar__image img-fluid rounded-circle mb-2 text-center" 
-                    src="/storage/{{ $user->profile->avatar_src }}" 
+                    src="/storage/{{ $user->profile->avatar_image }}" 
                     alt="user avatar" 
                 />
             </div>

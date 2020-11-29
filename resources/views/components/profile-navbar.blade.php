@@ -1,4 +1,4 @@
-<nav class="nav nav-borders mt-2 pl-3 justify-content-between">
+<nav class="nav nav-borders mt-2 pl-3 justify-content-around">
     <div class="d-flex">
         <a class="nav-link {{ Request::path() === Request::segment(1) ? 'active' : '' }}" href="{{ route('profile', [$user->username]) }}">Posts</a>
         <a class="nav-link" href="{{ route('profile', [$user->username]) }}/about">About</a>
@@ -15,8 +15,13 @@
         
         @if (auth()->id() !== $user->id)
             <!-- Add friend -->
-            <form action="" method="POST">
-                    <input type="submit" class="btn btn-success" value="Add Friend">
+            <form action="{{ route('profile', [$user->username]) }}/add" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-success">
+                    <div>
+                        <i class="fas fa-user-plus mr-2"></i>Add friend
+                    </div>
+                </button>
             </form>
             <!-- Follow -->
             @if ($followingUsers->contains($user->id))
@@ -27,7 +32,11 @@
             @else
                 <form action="{{ route('profile', [$user->username]) }}/follow" method="POST" class="pl-2">
                     @csrf
-                    <input type="submit" class="btn btn-outline-success" value="Follow">
+                    <button type="submit" class="btn btn-outline-success">
+                        <div>
+                            <i class="far fa-star mr-2"></i>Follow
+                        </div>
+                    </button>
                 </form>
             @endif
         @endif

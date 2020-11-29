@@ -89,6 +89,7 @@ class ProfileController extends Controller
     {
         $validatedData = $request->validate([
             'image_upload' => ['image'],
+            'cover_image_upload' => ['image'],
             'bio' => ['max:100'],
             'website' => ['nullable', 'url'],
             'location' => ['max:50'],
@@ -97,8 +98,14 @@ class ProfileController extends Controller
 
         if (isset($validatedData['image_upload'])) {
             $image_path = $validatedData['image_upload']->store('avatars', 'public');
-            $validatedData['avatar_src'] = $image_path; 
+            $validatedData['avatar_image'] = $image_path; 
             unset($validatedData['image_upload']);
+        }
+
+        if (isset($validatedData['cover_image_upload'])) {
+            $image_path = $validatedData['cover_image_upload']->store('avatars', 'public');
+            $validatedData['cover_image'] = $image_path; 
+            unset($validatedData['cover_image_upload']);
         }
 
         User::find(auth()->user()->id)->profile->update($validatedData);

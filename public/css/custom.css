@@ -4,6 +4,12 @@
     background: #c5c5c5;
 }
 
+.profile-hero__image {
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+}
+
 .profile-hero-content {
     border-radius: 0.35rem;
     background: white;

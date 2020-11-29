@@ -13,7 +13,7 @@
                 <div class="card-body d-flex justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl mr-3">
-                            <img src="/storage/{{ $user->profile->avatar_src }}" alt="avatar" class="avatar-img img-fluid"/>
+                            <img src="/storage/{{ $user->profile->avatar_image }}" alt="avatar" class="avatar-img img-fluid"/>
                         </div>
                         <div>
                         <div>What's on your mind?</div>
@@ -39,7 +39,7 @@
                 <!-- Card header w/ avatar -->
                 <div class="d-flex align-items-center">
                     <div class="avatar avatar-xl mr-3">
-                        <img src="/storage/{{ $user->profile->avatar_src }}" alt="avatar" class="avatar-img img-fluid"/>
+                        <img src="/storage/{{ $user->profile->avatar_image }}" alt="avatar" class="avatar-img img-fluid"/>
                     </div>
                     <div>
                         <div>
@@ -158,7 +158,7 @@
                     <div class="d-flex">
                         <div class="col-1">
                             <div class="avatar avatar-xl">
-                                <img class="avatar-img img-fluid" src="/storage/{{ $user->profile->avatar_src }}">
+                                <img class="avatar-img img-fluid" src="/storage/{{ $user->profile->avatar_image }}">
                             </div>
                         </div>
                         <div class="col-11">

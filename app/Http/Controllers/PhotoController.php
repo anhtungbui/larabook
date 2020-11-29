@@ -13,9 +13,12 @@ class PhotoController extends Controller
             return !is_null($photo['image_src']);
         });
 
+        $followingUsers = auth()->user()->follows;
+
         return view('profiles.photos.index', [
             'user' => $user,
             'photos' => $photos,
+            'followingUsers' => $followingUsers,
         ]);
     }
 }

@@ -37,6 +37,7 @@ Route::get('/search', [SearchController::class, 'index']);
 
 // Testing purpose
 Route::view('/profile', 'layouts.base'); 
+Route::view('/email', 'emails.new-follower'); 
 
 Route::get('/welcome', [ProfileController::class, 'welcome'])->middleware('auth'); 
 
@@ -54,6 +55,9 @@ Route::prefix('/{user:username}')->group(function () {
 
     Route::post('/follow', [FollowController::class, 'store']);
     Route::post('/unfollow', [FollowController::class, 'destroy']);
+
+    /** Photos */
+    Route::get('/photos', [PhotoController::class, 'index']);
 
     /** Posts */
     Route::get('/posts/create', [PostController::class, 'create']);
@@ -76,11 +80,6 @@ Route::prefix('/{user:username}')->group(function () {
         /** Like */
         Route::post('/like', [LikeController::class, 'store']);
         Route::delete('/unlike', [LikeController::class, 'destroy']);
-    
-    
     });
-
-    /** Photos */
-    Route::get('/photos', [PhotoController::class, 'index']);
 });
 

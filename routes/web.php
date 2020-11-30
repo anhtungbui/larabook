@@ -57,12 +57,16 @@ Route::prefix('/{user:username}')->middleware('auth')
 
     /** Follows */
     Route::post('/follow', [FollowController::class, 'store']);
-    Route::post('/unfollow', [FollowController::class, 'destroy']);
+    Route::delete('/unfollow', [FollowController::class, 'destroy']);
+
+    /** Friends */
+    Route::post('/befriend', [FriendController::class, 'store']);
+    Route::delete('/add', [FriendController::class, 'destroy']);
 
     /** Photos */
     Route::get('/photos', [PhotoController::class, 'index']);
 
-    /** Notification */
+    /** Notifications */
     Route::get('/notifications', [NotificationController::class, 'index'])->named('notifications.index');
     Route::delete('/notifications', [NotificationController::class, 'destroy']);
 

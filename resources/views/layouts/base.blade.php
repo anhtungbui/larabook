@@ -15,6 +15,7 @@
         <link href={{ asset("css/app.css") }} rel="stylesheet" />
         <link href={{ asset("css/sb-admin.css") }} rel="stylesheet" />
         <link href={{ asset("css/custom.css") }} rel="stylesheet" />
+        @livewireStyles
 
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -182,5 +183,6 @@
         <!-- Scripts -->
         <script src={{ asset("js/app.js") }}></script>
         <script src={{ asset("js/sb-admin.js") }}></script>
+        @livewireScripts
     </body>
 </html>

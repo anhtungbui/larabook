@@ -99,14 +99,18 @@
                                             <a href="#" class="btn btn-link mr-2">Share</a>
                                         {{-- </div> --}}
                                     </div>
-                                    <form action="" method="POST">
+                                    {{-- <form action="" method="POST">
                                         @csrf
                 
                                         <div class="form-group">
                                             <textarea type="text" class="form-control" rows="1" placeholder="Write a comment..."></textarea>
                                         </div>
-                                    </form>    
+                                    </form>     --}}
                                 @endauth
+                                
+                                <livewire:comment-index :postId="$post->id" />
+
+                                <livewire:comment-create :postId="$post->id"/>
                             </div>
                         </div>  
                         <!-- Basic form for creating new post-->

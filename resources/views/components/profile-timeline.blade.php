@@ -154,7 +154,11 @@
                     </div>
                 @endauth
                 <!-- Comments -->
-                @foreach ($post->comments as $comment)
+                <livewire:comment-index :postId="$post->id" />
+
+                <livewire:comment-create :postId="$post->id" />
+
+                {{-- @foreach ($post->comments as $comment)
                     <div class="d-flex">
                         <div class="col-1">
                             <div class="avatar avatar-xl">
@@ -171,13 +175,10 @@
                                 {{ $comment->created_at->diffForHumans() }}
                             </small>
                         </div>
-                        <!-- ... button maybe -->
-                        {{-- <div class="col-1">
-                        </div> --}}
                     </div>
-                @endforeach
+                @endforeach --}}
                 <!-- Comment input box -->
-                @auth
+                {{-- @auth
                     <form 
                         action="{{ route('comments.store', [$user->username, $post->id]) }}" 
                         method="POST">
@@ -191,12 +192,6 @@
                                     class="form-control @error('comment') is-invalid @enderror" 
                                     rows="1" 
                                     placeholder="Write a comment..."></textarea>
-
-                                {{-- @error('comment')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror --}}
                             </div>
                             <div class="col-2">
                                 <input type="submit" class="btn btn-primary btn-block" value="Post">
@@ -204,7 +199,7 @@
                             </div>
                         </div>
                     </form>
-                @endauth    
+                @endauth     --}}
             </div>
         </div>                
     @endforeach

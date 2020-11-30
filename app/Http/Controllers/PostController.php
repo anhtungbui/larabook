@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -9,11 +10,6 @@ use Storage;
 
 class PostController extends Controller
 {
-    /**
-     * Helpers 
-     */
-
-
     /**
      * Display a listing of the resource.
      *
@@ -67,7 +63,8 @@ class PostController extends Controller
      */
     public function show(User $user, Post $post)
     {
-        // ddd($post);
+        // $comments = Comment::findMany([22, 23])->count();
+        // ddd($comments);
         return view('posts.show', compact('user', 'post'));
     }
 

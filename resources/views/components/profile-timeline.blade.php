@@ -158,7 +158,7 @@
                     <div class="d-flex">
                         <div class="col-1">
                             <div class="avatar avatar-xl">
-                                <img class="avatar-img img-fluid" src="/storage/{{ $user->profile->avatar_image }}">
+                                <img class="avatar-img img-fluid" src="/storage/{{ $comment->user->profile->avatar_image }}">
                             </div>
                         </div>
                         <div class="col-11">
@@ -168,7 +168,7 @@
 
                             </div>
                             <small class="text-muted ml-3">
-                                {{ date('d-m-Y', strtotime($comment->updated_at)) }} at {{ date('H:i', strtotime($comment->updated_at)) }}
+                                {{ $comment->created_at->diffForHumans() }}
                             </small>
                         </div>
                         <!-- ... button maybe -->

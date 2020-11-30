@@ -20,8 +20,8 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
     -   CRUD ✔️
     -   Like/unlike
     -   Comment ✔️
--   Notifications
-    -   New follower (via email) ✔️
+-   Notifications (via web & emails)
+    -   New follower ✔️
 -   Search
     -   By name ✔️
 -   Group

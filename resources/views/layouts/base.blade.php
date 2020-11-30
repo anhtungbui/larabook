@@ -50,6 +50,7 @@
             <ul class="navbar-nav align-items-center ml-auto">
 
                 @auth
+                    <!-- To Profile -->
                     <a
                         class="btn btn-light rounded-pill d-none d-lg-block"
                         href="{{ route('profile', [auth()->user()->username]) }}"
@@ -59,6 +60,25 @@
                     >
                         {{ auth()->user()->name }}
                     </a>
+                    <!-- Notifications -->
+                    <div class="nav-item dropdown no-caret pl-lg-1 dropdown-user">
+                        <a
+                            class="btn btn-icon btn-light"
+                            href="{{ route('profile', [auth()->user()->username]) }}/notifications"
+                            data-toggle="tooltip" 
+                            data-placement="bottom" 
+                            title="Notifications"
+                        >
+                            <div>
+                                @if(auth()->user()->notifications->count() > 0)
+                                {{ auth()->user()->notifications->count() }}<i class="far fa-bell ml-1"></i>
+                                @else
+                                <i class="far fa-bell"></i>
+                                @endif
+                            </div>
+                        </a>
+
+                    </div>
                     <!-- Create Dropdown-->
                     <li class="nav-item dropdown no-caret pl-lg-1 mr-lg-1 dropdown-user">
                         <a 

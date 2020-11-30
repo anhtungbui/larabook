@@ -44,6 +44,15 @@ class CommentController extends Controller
             'user_id' => auth()->user()->id,
             'content' => $validatedData['comment'],
         ]);
+        
+        // Fire a notification only if we do some activities on other people's profile
+        if ($user->id !== auth()->id()) {
+            $user->notifications()->create([
+                'content' => auth()->user()->name . ' commented on one of your posts',
+                'source_url' => route('posts.show', [$user->username, $post->id]),
+                'type' => 'comment'
+                ]);
+        }
 
         return back()->with('status', 'Comment posted');
     }

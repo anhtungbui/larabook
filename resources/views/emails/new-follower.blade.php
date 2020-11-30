@@ -10,19 +10,17 @@
         body {
             font-family: 'Nunito', sans-serif;
         }
+
         .container {
             display: flex;
             justify-content: center;
-        }
-        
-        .border {
-            border: 1px solid red;
         }
 
         .wrapper {
             width: 80%;
         }
-        
+
+        /* Header */
         .header {
             border-bottom: 1px solid #e4e6eb;
         }
@@ -32,9 +30,9 @@
             color: #0061f2;
         }
 
+        /* Main */
         .main {
             padding-bottom: 50px;
-            
         }
 
         .card {
@@ -67,6 +65,7 @@
             background: #0061f2d7;
         }
 
+        /* Footer */
         .footer {
             border-top: 1px solid #e4e6eb;
             text-align: center;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Notification;
 use Mail;
 use App\Mail\FollowNotification;
 
@@ -16,8 +17,14 @@ class FollowController extends Controller
         /**
          * Save for later when we setup user settings system 
          */
-        Mail::to($user->email)
-            ->send(new FollowNotification(auth()->user()));
+        // Mail::to($user->email)
+        //     ->send(new FollowNotification(auth()->user()));
+
+        $user->notifications()->create([
+                    'content' => auth()->user()->name . ' started following you',
+                    'source_url' => route('profile', [auth()->user()->username]),
+                    'type' => 'follow',
+                    ]);
 
         return back()->with('status', $user->name . ' followed');
     }

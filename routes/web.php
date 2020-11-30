@@ -8,6 +8,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\NotificationController;
 
 use App\Models\Post;
 use App\Models\Like;
@@ -47,17 +48,23 @@ Route::get('/posts/{post}/likes', function (Post $post) {
 });
 
 
-Route::prefix('/{user:username}')->group(function () {
+Route::prefix('/{user:username}')->middleware('auth')
+                                 ->group(function () {
     /** Profile */
     Route::get('/', [ProfileController::class, 'show'])->name('profile');
     Route::get('/edit', [ProfileController::class, 'edit']);
     Route::put('/', [ProfileController::class, 'update']);
 
+    /** Follows */
     Route::post('/follow', [FollowController::class, 'store']);
     Route::post('/unfollow', [FollowController::class, 'destroy']);
 
     /** Photos */
     Route::get('/photos', [PhotoController::class, 'index']);
+
+    /** Notification */
+    Route::get('/notifications', [NotificationController::class, 'index'])->named('notifications.index');
+    Route::delete('/notifications', [NotificationController::class, 'destroy']);
 
     /** Posts */
     Route::get('/posts/create', [PostController::class, 'create']);

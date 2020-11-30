@@ -80,4 +80,9 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')
                                     ->withTimestamps();
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

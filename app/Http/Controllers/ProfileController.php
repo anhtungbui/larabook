@@ -58,6 +58,8 @@ class ProfileController extends Controller
         // ddd($likedPosts);
 
         $followingUsers = auth()->user()->follows;
+        
+        // ddd($followingUsers);
 
         return view('profiles.show', [
                     'user' => $user,

@@ -23,12 +23,15 @@
                     </div>
                 </button>
             </form>
-            <!-- Follow -->
+            
+            <!-- Follow/Unfollow -->
+            <livewire:follow-button :user="$user" />
+{{--             
             @if ($followingUsers->contains($user->id))
-                <form action="{{ route('profile', [$user->username]) }}/unfollow" method="POST" class="pl-2">
-                    @csrf
-                    <input type="submit" class="btn btn-outline-danger" value="Unfollow">
-                </form>
+            <form action="{{ route('profile', [$user->username]) }}/unfollow" method="POST" class="pl-2">
+                @csrf
+                <input type="submit" class="btn btn-outline-danger" value="Unfollow">
+            </form>
             @else
                 <form action="{{ route('profile', [$user->username]) }}/follow" method="POST" class="pl-2">
                     @csrf
@@ -38,7 +41,7 @@
                         </div>
                     </button>
                 </form>
-            @endif
+            @endif --}}
         @endif
 
     </div>

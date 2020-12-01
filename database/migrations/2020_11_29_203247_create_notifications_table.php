@@ -10,12 +10,23 @@ class CreateNotificationsTable extends Migration
      * Run the migrations.
      *
      * @return void
+     * 
+     * Column 'user_id' is the one who receives the notification
+     * Column 'from_user_id' is the one who causes the activity 
+     * Column 'source_url' is the place where the activity happens
      */
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('from_user_id')
+                  ->constrained('users')
+                  ->onDelete('cascade');
+
+            $table->foreignId('user_id') 
+                  ->constrained('users')
+                  ->onDelete('cascade');
+                  
             $table->string('content');
             $table->string('source_url');
             $table->string('type');

@@ -35,17 +35,21 @@ class FollowButton extends Component
 
     public function notify()
     {
-        /**
-         * Save for later when we setup user settings system 
-         */
-        // Mail::to($user->email)
-        //     ->send(new FollowNotification(auth()->user()));
-
         $this->user->notifications()->create([
+                    'from_user_id' => auth()->id(),
                     'content' => auth()->user()->name . ' started following you',
                     'source_url' => route('profile', [auth()->user()->username]),
                     'type' => 'follow',
                     ]);
+    }
+
+    protected function notifyByEmail()
+    {
+         /**
+         * Save for later when we setup user settings system 
+         */
+        // Mail::to($user->email)
+        //     ->send(new FollowNotification(auth()->user()));
     }
 
     public function render()

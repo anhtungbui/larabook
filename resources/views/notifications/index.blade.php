@@ -19,13 +19,25 @@
                     <i class="fas fa-check-circle mr-2"></i>{{ session('status') }}
                 </div>
             @endif
+            
+            <div class="mb-4">
+                <h4 class="font-weight-700">Friend Requests ({{ $friendRequests->count() }})</h4>
+                <livewire:friend-request :friendRequests="$friendRequests" />
+            </div>
+            <hr>
+            <div class="mb-4">
+                <h4 class="font-weight-700">All</h4>
+                {{-- <livewire:friend-request :user="$user" /> --}}
+            </div>
 
             @foreach ($notifications as $notification)
                 <div class="card shadow-sm mb-2 lift lift-sm">
                     <div class="card-body d-flex justify-content-between">
                         <div class="d-flex align-items-center">
                             <div class="avatar avatar-xl mr-3">
-                                @if ($notification->type === 'follow')
+                                @if ($notification->type === 'follow' 
+                                        || $notification->type === 'friend request' 
+                                        || $notification->type === 'confirmation')
                                     <i class="fas fa-user-friends fa-2x"></i>
                                 @elseif ($notification->type === 'comment')
                                     <i class="fas fa-comments fa-2x"></i>

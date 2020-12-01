@@ -81,6 +81,13 @@ class User extends Authenticatable
                                     ->withTimestamps();
     }
 
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+                                    ->withPivot('status')
+                                    ->withTimestamps();
+    }
+
     public function notifications()
     {
         return $this->hasMany(Notification::class);

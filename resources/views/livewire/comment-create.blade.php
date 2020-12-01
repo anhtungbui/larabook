@@ -1,13 +1,14 @@
 <form wire:submit.prevent="submit">
     <div class="form-row pt-2">
         <div class="col-10">
-            <input 
+            <textarea 
                 type="text"
+                rows="1"
                 name="content" 
                 class="form-control @error('content') is-invalid @enderror" 
-                wire:model="content"
+                wire:model.lazy="content"
                 placeholder="Write a comment..."
-            >
+            ></textarea>
             
             @error('content')
                 <span class="invalid-feedback" role="alert">

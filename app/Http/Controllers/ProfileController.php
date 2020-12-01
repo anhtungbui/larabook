@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use Arr;
+use App\Models\User;
+use App\Models\Friend;
+use App\Models\Notification;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -58,8 +60,15 @@ class ProfileController extends Controller
         // ddd($likedPosts);
 
         $followingUsers = auth()->user()->follows;
+
+        // $notification = Notification::where([
+        //     ['user_id', '=', $user->id],
+        //     ['type', '=', 'friend request'],
+        //     ])->first();
+        // ddd($notification);
         
-        // ddd($followingUsers);
+        $hasFriendRequest = $user->friends->contains(auth()->user());
+        // ddd($hasFriendRequest);
 
         return view('profiles.show', [
                     'user' => $user,

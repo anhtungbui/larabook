@@ -6,7 +6,7 @@
             </div>
         </button>
     @else
-        <button class="btn btn-success" wire:click="followUser">
+        <button class="btn btn-primary" wire:click="followUser">
             <div>
                 <i class="fas fa-heart mr-2"></i>Follow
             </div>

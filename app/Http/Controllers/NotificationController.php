@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,29 @@ class NotificationController extends Controller
                         ->where('user_id', auth()->id())
                         ->get();
         
+        $friendRequests = $notifications->filter(function ($notification) {
+            return $notification['type'] === 'friend request'; 
+        });
+        // ddd($friendRequests);
+
+        // $friendship = Friend::where([
+        //     ['friend_id', '=', auth()->id()],
+        //     ['user_id', '=', $friendRequests[0]['user_id']]
+        // ])->get();
+
+        // $friendship = auth()->user()->friends;
+
+        // ddd($friendship);
+
+        // $friendship = $friendRequests->filter(function ($friendRequest) {
+        //     return $friendRequest['user_id'];
+        // });
+
+
         return view('notifications.index', [
             'user' => auth()->user(),
-            'notifications' => $notifications
+            'notifications' => $notifications,
+            'friendRequests' => $friendRequests,
         ]);
     }
 

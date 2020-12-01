@@ -15,33 +15,10 @@
         
         @if (auth()->id() !== $user->id)
             <!-- Add friend -->
-            <form action="{{ route('profile', [$user->username]) }}/add" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-success">
-                    <div>
-                        <i class="fas fa-user-plus mr-2"></i>Add friend
-                    </div>
-                </button>
-            </form>
-            
+            <livewire:add-friend :user="$user" />
+
             <!-- Follow/Unfollow -->
             <livewire:follow-button :user="$user" />
-{{--             
-            @if ($followingUsers->contains($user->id))
-            <form action="{{ route('profile', [$user->username]) }}/unfollow" method="POST" class="pl-2">
-                @csrf
-                <input type="submit" class="btn btn-outline-danger" value="Unfollow">
-            </form>
-            @else
-                <form action="{{ route('profile', [$user->username]) }}/follow" method="POST" class="pl-2">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-success">
-                        <div>
-                            <i class="far fa-star mr-2"></i>Follow
-                        </div>
-                    </button>
-                </form>
-            @endif --}}
         @endif
 
     </div>

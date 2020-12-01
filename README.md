@@ -14,14 +14,16 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
     -   Password recovery ✔️
 -   Profile
     -   Update details ✔️
-    -   Add friends
-    -   Follow/unfollow ✔️
+    -   Add friends ✔️
+    -   Follow users ✔️
 -   Posts
     -   CRUD ✔️
     -   Like/unlike
     -   Comment ✔️
 -   Notifications (via web & emails)
     -   New follower ✔️
+    -   New friend request ✔️
+    -   New comment on post ✔️
 -   Search
     -   By name ✔️
 -   Group

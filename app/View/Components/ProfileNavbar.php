@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Friend;
 use Illuminate\View\Component;
 
 class ProfileNavbar extends Component

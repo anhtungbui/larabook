@@ -5,6 +5,12 @@
             <i class="fas fa-check-circle mr-2"></i>{{ session("status") }}
         </div>
     @endif
+    
+    {{-- @auth
+        @if (auth()->id() !== $user->id)
+            <livewire:friend-request :user="$user" />
+        @endif
+    @endauth --}}
 
     @auth
         @if (auth()->id() === $user->id)

@@ -25,10 +25,10 @@ class FriendRequest extends Component
         $friendship = Friend::where('user_id', $fromUserId);
         $friendship->update(['status' => 'accepted']);
 
-        Friend::insert([
+        Friend::create([
             'user_id' => auth()->id(),
             'friend_id' => $fromUserId,
-            'status' => 'accepted'
+            'status' => 'accepted',
         ]);
 
         $this->removeNotification($fromUserId);

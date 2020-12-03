@@ -13,7 +13,7 @@ class SearchController extends Controller
             'query' => ['required']
         ]);
 
-        $users = User::where('name', 'ILIKE', "%${validatedData['query']}%")
+        $users = User::where('name', 'LIKE', "%${validatedData['query']}%")
                             ->get();
         // ddd(strtolower($validatedData['query']));
         // ddd($users);

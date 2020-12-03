@@ -70,6 +70,7 @@ class ProfileController extends Controller
         $hasFriendRequest = $user->friends->contains(auth()->user());
         // ddd($hasFriendRequest);
 
+        
         return view('profiles.show', [
                     'user' => $user,
                     'posts' => $posts,

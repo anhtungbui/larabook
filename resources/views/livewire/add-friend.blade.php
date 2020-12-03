@@ -1,5 +1,4 @@
 <div>
-    {{ $isFriend }}
     @if ($isFriend === 'accepted')
         <button type="submit" class="btn btn-danger" wire:click="removeFriend">
             <div>

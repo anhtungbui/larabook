@@ -21,7 +21,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -59,8 +59,6 @@ class ProfileController extends Controller
         $likedPosts = auth()->user()->likes()->get()->pluck('post_id');
         // ddd($likedPosts);
 
-        $followingUsers = auth()->user()->follows;
-
         // $notification = Notification::where([
         //     ['user_id', '=', $user->id],
         //     ['type', '=', 'friend request'],
@@ -75,7 +73,6 @@ class ProfileController extends Controller
                     'user' => $user,
                     'posts' => $posts,
                     'likedPosts' =>$likedPosts,
-                    'followingUsers' => $followingUsers
                 ]);
     }
 

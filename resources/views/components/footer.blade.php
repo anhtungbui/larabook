@@ -4,7 +4,7 @@
             <div class="small">
                 <a href="/">Larabook &copy; 2020 </a>
                 &middot;
-                <a href="https://www.anhtungbui.com">by Anh Tung Bui</a>
+                <a href="http://www.anhtungbui.com">Developed by Anh Tung Bui</a>
             </div>
         {{-- </div> --}}
     </div>

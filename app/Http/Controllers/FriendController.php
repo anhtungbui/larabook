@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Friend;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,11 @@ class FriendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        
+        // return view('livewire.friends.friends-index', compact('user'));
+        return view('components.profile-friend', compact('user'));
     }
 
     /**

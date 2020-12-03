@@ -2,21 +2,18 @@
 
 namespace App\View\Components;
 
-use App\Models\Friend;
 use Illuminate\View\Component;
 
-class ProfileNavbar extends Component
+class ProfileFriend extends Component
 {
-    public $user;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**
@@ -26,6 +23,6 @@ class ProfileNavbar extends Component
      */
     public function render()
     {
-        return view('components.profile-navbar');
+        return view('components.profile-friend');
     }
 }

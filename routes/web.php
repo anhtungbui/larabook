@@ -1,17 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\LikeController;
-use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\FollowController;
-use App\Http\Controllers\NotificationController;
-
-use App\Models\Post;
 use App\Models\Like;
+use App\Models\Post;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\FriendController;
+use App\Http\Controllers\SearchController;
+
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Livewire\Friends\FriendsIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,9 @@ use App\Models\Like;
 */
 
 Route::get('/', function () {
-    return auth()->check() ? view('home') : view('welcome');     
+    return auth()->check() 
+            ? redirect(route('profile', [auth()->user()->username]))
+            : view('welcome');     
 });
 
 Auth::routes();
@@ -60,6 +64,7 @@ Route::prefix('/{user:username}')->middleware('auth')
     Route::delete('/unfollow', [FollowController::class, 'destroy']);
 
     /** Friends */
+    Route::get('/friends', [FriendController::class, 'index']);
     Route::post('/befriend', [FriendController::class, 'store']);
     Route::delete('/add', [FriendController::class, 'destroy']);
 

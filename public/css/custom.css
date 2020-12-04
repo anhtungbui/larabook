@@ -68,3 +68,11 @@
     width: 15rem;
     object-fit: cover;
 }
+
+.searchbar__dropdown {
+    position: absolute;
+    top: 3.35rem;
+    border-radius: 5px;
+    width: 14.75rem;
+    background: white;
+}

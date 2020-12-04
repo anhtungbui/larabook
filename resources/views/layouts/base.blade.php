@@ -34,19 +34,9 @@
             <a class="navbar-brand text-primary" href="/">Larabook</a>
             <!-- Navbar Search Input-->
             <!-- * * Note: * * Visible only on and above the md breakpoint-->
-            <form 
-                class="form-inline mr-auto d-none d-md-block mr-3"
-                action="/search"
-                method="GET"
-                >
-                    @csrf
-                    <div class="input-group input-group-joined input-group-solid">
-                        <div class="input-group-text border-0 pr-0">
-                            <i data-feather="search"></i>
-                        </div>
-                        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search Larabook" aria-label="Search" />
-                    </div>
-            </form>
+
+            <livewire:navbar.search-bar />
+            
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ml-auto">
 

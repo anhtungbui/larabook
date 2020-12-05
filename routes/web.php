@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
@@ -38,7 +37,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 /** Search */
 Route::get('/search', [SearchController::class, 'index']);
-// Route::post('/search', [SearchController::class, 'index']);
 
 // Testing purpose
 Route::view('/profile', 'layouts.base'); 
@@ -73,7 +71,6 @@ Route::prefix('/{user:username}')->middleware('auth')
 
     /** Notifications */
     Route::get('/notifications', [NotificationController::class, 'index'])->named('notifications.index');
-    Route::delete('/notifications', [NotificationController::class, 'destroy']);
 
     /** Posts */
     Route::get('/posts/create', [PostController::class, 'create']);

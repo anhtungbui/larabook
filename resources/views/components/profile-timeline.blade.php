@@ -1,40 +1,34 @@
 <section class="col-xl-8">
     <!-- Hidden Alerts -->
     @if (session("status"))
-        <div class="alert alert-success shadow-sm" role="alert">
-            <i class="fas fa-check-circle mr-2"></i>{{ session("status") }}
-        </div>
+    <div class="alert alert-success shadow-sm" role="alert">
+        <i class="fas fa-check-circle mr-2"></i>{{ session("status") }}
+    </div>
     @endif
     
-    {{-- @auth
-        @if (auth()->id() !== $user->id)
-            <livewire:friend-request :user="$user" />
-        @endif
-    @endauth --}}
-
     @auth
         @if (auth()->id() === $user->id)
-            <!-- What's on your mind Card -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-body d-flex justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl mr-3">
-                            <img src="/storage/{{ $user->profile->avatar_image }}" alt="avatar" class="avatar-img img-fluid"/>
-                        </div>
-                        <div>
-                        <div>What's on your mind?</div>
-                        </div>
+        <!-- What's on your mind Card -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body d-flex justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div class="avatar avatar-xl mr-3">
+                        <img src="/storage/{{ $user->profile->avatar_image }}" alt="avatar" class="avatar-img img-fluid"/>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <button 
-                            class="btn btn-primary rounded-pill shadow-sm"
-                            onClick="location.href = '{{ route('profile', [auth()->user()->username]) }}/posts/create'"
-                        >
-                            <i class="fas fa-edit ml-1 mr-2"></i>Create New Post
-                        </button>
+                    <div>
+                    <div>What's on your mind?</div>
                     </div>
                 </div>
-            </div> 
+                <div class="d-flex align-items-center">
+                    <button 
+                        class="btn btn-primary rounded-pill shadow-sm"
+                        onClick="location.href = '{{ route('profile', [auth()->user()->username]) }}/posts/create'"
+                    >
+                        <i class="fas fa-edit ml-1 mr-2"></i>Create New Post
+                    </button>
+                </div>
+            </div>
+        </div> 
         @endif
     @endauth
     
@@ -60,6 +54,7 @@
                 </div>
 
                 @auth
+                    @if (auth()->id() === $user->id)
                     <div class="dropdown">
                         <button 
                             class="btn btn-icon btn-light" 
@@ -109,15 +104,16 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endauth
             </div>
             <div class="card-body">
                 <div class="pb-3 pre-line">{{ $post->content }}</div>
                 <!-- Photo attached -->
                 @if ($post->image_src)
-                    <div class="text-center mb-2">
-                        <img src="/storage/{{ $post->image_src }}" class="img-fluid" alt="user upload">
-                    </div>
+                <div class="text-center mb-2">
+                    <img src="/storage/{{ $post->image_src }}" class="img-fluid" alt="user upload">
+                </div>
                 @endif   
                 <!-- Post reaction -->
                 @auth
@@ -163,49 +159,6 @@
                 <livewire:comment-index :postId="$post->id" />
 
                 <livewire:comment-create :postId="$post->id" />
-
-                {{-- @foreach ($post->comments as $comment)
-                    <div class="d-flex">
-                        <div class="col-1">
-                            <div class="avatar avatar-xl">
-                                <img class="avatar-img img-fluid" src="/storage/{{ $comment->user->profile->avatar_image }}">
-                            </div>
-                        </div>
-                        <div class="col-11">
-                            <div class="border bg-gray-100 rounded py-2 pl-3">
-                                <a href="#" class="text-dark font-weight-700">{{ $comment->user->name }}</a>
-                                <div class="pre-line">{{ $comment->content }}</div>
-
-                            </div>
-                            <small class="text-muted ml-3">
-                                {{ $comment->created_at->diffForHumans() }}
-                            </small>
-                        </div>
-                    </div>
-                @endforeach --}}
-                <!-- Comment input box -->
-                {{-- @auth
-                    <form 
-                        action="{{ route('comments.store', [$user->username, $post->id]) }}" 
-                        method="POST">
-
-                        @csrf
-                        <div class="form-row pt-2">
-                            <div class="col-10">
-                                <textarea 
-                                    type="text" 
-                                    name="comment" 
-                                    class="form-control @error('comment') is-invalid @enderror" 
-                                    rows="1" 
-                                    placeholder="Write a comment..."></textarea>
-                            </div>
-                            <div class="col-2">
-                                <input type="submit" class="btn btn-primary btn-block" value="Post">
-
-                            </div>
-                        </div>
-                    </form>
-                @endauth     --}}
             </div>
         </div>                
     @endforeach

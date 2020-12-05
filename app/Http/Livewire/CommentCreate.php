@@ -39,9 +39,10 @@ class CommentCreate extends Component
         // Fire a notification only if we do some activities on other people's profile
         if ($post->user->id !== auth()->id()) {
             $post->user->notifications()->create([
-                'content' => auth()->user()->name . ' commented on one of your posts',
-                'source_url' => route('posts.show', [$post->user->username, $this->postId]),
-                'type' => 'comment'
+                    'from_user_id' => auth()->id(),
+                    'content' => auth()->user()->name . ' commented on one of your posts',
+                    'source_url' => route('posts.show', [$post->user->username, $this->postId]),
+                    'type' => 'comment'
                 ]);
         }
     }

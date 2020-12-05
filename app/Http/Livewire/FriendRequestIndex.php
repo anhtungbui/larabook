@@ -18,7 +18,7 @@ class FriendRequestIndex extends Component
 
     public function mount()
     {
-        $this->friendRequests = $this->getFriendRequests();
+        //
     }
 
     public function getFriendRequests()
@@ -43,8 +43,7 @@ class FriendRequestIndex extends Component
         ]);
         
         $this->notify($requesterId);
-        $this->deleteNotification($requesterId);
-        $this->emit('notificationDeleted');
+        $this->emit('friendRequestUpdated', $requesterId);
         
         $this->friendRequests = $this->getFriendRequests();
         session()->flash('message', 'Friend request accepted');
@@ -55,8 +54,7 @@ class FriendRequestIndex extends Component
         $friendship = Friend::where('user_id', $requesterId);
         $friendship->delete();
 
-        $this->deleteNotification($requesterId);
-        $this->emit('notificationDeleted');
+        $this->emit('friendRequestUpdated', $requesterId);
         
         $this->friendRequests = $this->getFriendRequests();
         session()->flash('message', 'Friend request declined');
@@ -71,19 +69,11 @@ class FriendRequestIndex extends Component
             'type' => 'confirmation',
             ]);
     }
-
-    protected function deleteNotification($requesterId)
-    {
-        $notification = Notification::where([
-            ['from_user_id', $requesterId],
-            ['user_id', auth()->id()],
-            ['type', 'friend request']
-        ]);
-        $notification->delete();
-    }
    
     public function render()
     {
+        $this->friendRequests = $this->getFriendRequests();
+
         return view('livewire.friend-request-index');
     }
 }

@@ -16,11 +16,8 @@ class NotificationSingle extends Component
 
     public function deleteNotification($notificationId)
     {
-        // ddd('delete clicked');
         Notification::find($notificationId)->delete();
         $this->emitTo('notification-index', 'deleteClicked', $notificationId);
-
-        // $this->refresh();
     }
 
     public function render()

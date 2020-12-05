@@ -22,25 +22,10 @@
         <div>
             <button 
                 class="btn btn-light" 
-                wire:click="deleteNotification({{ $notification->id }})"
+                wire:click="$emit('notificationDeleted', {{ $notification->id }})"
             >
                 <i class="far fa-trash-alt"></i>
             </button>
-            {{-- <form 
-                action="{{ route('profile', [auth()->user()->username]) }}/notifications"
-                method="POST"
-            >
-                @csrf
-                @method('DELETE')
-                <button 
-                    type="submit" 
-                    class="btn btn-light btn-icon"
-                    name="notification_id" 
-                    value="{{ $notification->id }}"
-                >
-                    <i class="far fa-trash-alt"></i>
-                </button>
-            </form> --}}
         </div>
     </div>
 </div>

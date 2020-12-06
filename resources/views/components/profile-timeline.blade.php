@@ -33,6 +33,7 @@
     @endauth
     
     <!-- All Posts -->
+    
     @foreach ($posts as $post)
         <div class="card shadow-sm mb-4">
             <div class="card-header post-card-header d-flex justify-content-between">
@@ -118,41 +119,34 @@
                 <!-- Post reaction -->
                 @auth
                     <div class="post-reaction pb-2 d-flex justify-content-around align-items-center">
-                        <div>{{ $post->likes->count() }} <i class="fa fa-thumbs-up"></i></div>
+                        <livewire:like-counter :post="$post" />
                         <div>{{ $post->comments->count() }}<i class="fa fa-comments ml-1"></i></div>
-                        
-                        <!-- Like button -->
-                        {{-- <like-button 
-                            username="{{ $user->username }}"
-                            post="{{ $post->id }}"
-                            liked="{{ $likedPosts }}"
-                            count="{{ $post->likes->count() }}"
-                        ></like-button> --}}
+                       
+                        <livewire:like-button :post="$post" />
 
-
-                        <form 
+                        {{-- <form 
                             action=""
                             method="POST"
                         >
                             @csrf
                             <input type="submit" class="btn btn-light rounded-pill" value="Like">
-                        </form>
+                        </form> --}}
                         <!-- Comment button -->
-                        <form 
+                        {{-- <form 
                             action=""
                             method="POST"
                         >
                             @csrf
                             <input type="submit" class="btn btn-light rounded-pill" value="Comment">
-                        </form>
+                        </form> --}}
                         <!-- Share button -->
-                        <form 
+                        {{-- <form 
                             action=""
                             method="POST"
                         >
                             @csrf
                             <input type="submit" class="btn btn-light rounded-pill" value="Share">
-                        </form>
+                        </form> --}}
                     </div>
                 @endauth
                 <!-- Comments -->

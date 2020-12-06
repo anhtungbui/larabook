@@ -22,7 +22,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="nav-fixed">
-        <div id="app">
+        <div>
             <nav 
             class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white pl-5 pr-5" 
             id="sidenavAccordion"

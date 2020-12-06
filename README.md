@@ -18,12 +18,12 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
     -   Follow users ✔️
 -   Posts
     -   CRUD ✔️
-    -   Like/unlike
+    -   Like/unlike ✔️
     -   Comment ✔️
 -   Notifications (via web & emails)
     -   New follower ✔️
     -   New friend request ✔️
-    -   New comment on post ✔️
+    -   New post reaction (like/comment) ✔️
 -   Search
     -   By name ✔️
 -   Group
@@ -35,7 +35,7 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
 
 # Tech stack
 
--   Frontend: Blade, Bootstrap, VueJS
+-   Frontend: Blade, Bootstrap, Livewire
 -   Backend: PHP Laravel, MySQL
 
 <br />

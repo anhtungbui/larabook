@@ -12,8 +12,10 @@
     <div class="row">
         <!-- Left column -->
         <x-profile-sidebar :user="$user" />
+        
         <!-- Right column -->
-        <x-profile-timeline :user="$user" :posts="$posts" :likedPosts="$likedPosts" />
+        <livewire:post-index :user="$user" />
+
     </div>
 
 </div>    

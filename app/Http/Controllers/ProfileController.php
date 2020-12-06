@@ -53,27 +53,7 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        $posts = $user->posts()->latest()->get();
-
-        // $likedPosts = $user->likes()->get();
-        $likedPosts = auth()->user()->likes()->get()->pluck('post_id');
-        // ddd($likedPosts);
-
-        // $notification = Notification::where([
-        //     ['user_id', '=', $user->id],
-        //     ['type', '=', 'friend request'],
-        //     ])->first();
-        // ddd($notification);
-        
-        $hasFriendRequest = $user->friends->contains(auth()->user());
-        // ddd($hasFriendRequest);
-
-        
-        return view('profiles.show', [
-                    'user' => $user,
-                    'posts' => $posts,
-                    'likedPosts' =>$likedPosts,
-                ]);
+        return view('profiles.show', compact('user'));
     }
 
     /**

@@ -21,14 +21,14 @@ class CommentCreate extends Component
             'content' => ['required']
             ]);
 
-        auth()->user()->comments()->create([
-                                    'content' => $this->content,
-                                    'post_id' => $this->post->id,
+        $newComment = auth()->user()->comments()->create([
+                                        'content' => $this->content,
+                                        'post_id' => $this->post->id,
                                     ]);
                                     
-        $this->emit('commentCreated');
         $this->content = '';
         $this->notify();
+        $this->emit('commentCreated', $newComment->toArray());
     }
 
     public function notify()
@@ -38,7 +38,7 @@ class CommentCreate extends Component
             $this->post->user->notifications()->create([
                     'from_user_id' => auth()->id(),
                     'content' => auth()->user()->name . ' commented on one of your posts',
-                    'source_url' => route('posts.show', [$this->post->user->username, $this->post->Id]),
+                    'source_url' => route('posts.show', [$this->post->user->username, $this->post->id]),
                     'type' => 'comment'
                 ]);
         }

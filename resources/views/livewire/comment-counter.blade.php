@@ -1,0 +1,1 @@
+<div>{{ $commentCount }} <i class="fa fa-comments ml-1"></i></div>

@@ -3,17 +3,16 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
-use App\Models\Comment;
 use Livewire\Component;
 
 class CommentCreate extends Component
 {
+    public Post $post;
     public $content;
-    public $postId;
 
-    public function mount($postId)
+    public function mount($post)
     {
-        $this->postId = $postId;
+        $this->post = $post;
     }
 
     public function submit()
@@ -24,7 +23,7 @@ class CommentCreate extends Component
 
         auth()->user()->comments()->create([
                                     'content' => $this->content,
-                                    'post_id' => $this->postId,
+                                    'post_id' => $this->post->id,
                                     ]);
                                     
         $this->emit('commentCreated');
@@ -34,14 +33,12 @@ class CommentCreate extends Component
 
     public function notify()
     {
-        $post = Post::find($this->postId);
-        
         // Fire a notification only if we do some activities on other people's profile
-        if ($post->user->id !== auth()->id()) {
-            $post->user->notifications()->create([
+        if ($this->post->user->id !== auth()->id()) {
+            $this->post->user->notifications()->create([
                     'from_user_id' => auth()->id(),
                     'content' => auth()->user()->name . ' commented on one of your posts',
-                    'source_url' => route('posts.show', [$post->user->username, $this->postId]),
+                    'source_url' => route('posts.show', [$this->post->user->username, $this->post->Id]),
                     'type' => 'comment'
                 ]);
         }

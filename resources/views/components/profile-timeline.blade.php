@@ -35,7 +35,10 @@
     <!-- All Posts -->
     
     @foreach ($posts as $post)
-        <div class="card shadow-sm mb-4">
+        <livewire:post-single :post="$post" :user="$user" :key="$post->id" />
+        
+        
+        {{-- <div class="card shadow-sm mb-4">
             <div class="card-header post-card-header d-flex justify-content-between">
                 <!-- Card header w/ avatar -->
                 <div class="d-flex align-items-center">
@@ -119,41 +122,19 @@
                 <!-- Post reaction -->
                 @auth
                     <div class="post-reaction pb-2 d-flex justify-content-around align-items-center">
+
                         <livewire:like-counter :post="$post" />
+
                         <div>{{ $post->comments->count() }}<i class="fa fa-comments ml-1"></i></div>
                        
                         <livewire:like-button :post="$post" />
 
-                        {{-- <form 
-                            action=""
-                            method="POST"
-                        >
-                            @csrf
-                            <input type="submit" class="btn btn-light rounded-pill" value="Like">
-                        </form> --}}
-                        <!-- Comment button -->
-                        {{-- <form 
-                            action=""
-                            method="POST"
-                        >
-                            @csrf
-                            <input type="submit" class="btn btn-light rounded-pill" value="Comment">
-                        </form> --}}
-                        <!-- Share button -->
-                        {{-- <form 
-                            action=""
-                            method="POST"
-                        >
-                            @csrf
-                            <input type="submit" class="btn btn-light rounded-pill" value="Share">
-                        </form> --}}
-                    </div>
                 @endauth
                 <!-- Comments -->
                 <livewire:comment-index :postId="$post->id" />
 
                 <livewire:comment-create :postId="$post->id" />
             </div>
-        </div>                
+        </div>                 --}}
     @endforeach
 </section>

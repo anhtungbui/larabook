@@ -2,29 +2,29 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Post;
 use App\Models\Comment;
 use Livewire\Component;
 
 class CommentIndex extends Component
 {
-    protected $listeners = ['commentCreated'];
-
-    public $postId;
-
+    public Post $post;
     public $comments;
-
     public $lastComment;
-
-    public function mount($postId)
+    protected $listeners = ['commentCreated'];
+    
+    public function mount($post)
     {
-        $this->postId = $postId;
-        $this->lastComment = Comment::where('post_id', $this->postId)->get()->last();
+        $this->post = $post;
+        $this->lastComment = Comment::where('post_id', $this->post->id)
+                                            ->get()
+                                            ->last();
     }
 
     public function showAll()
     {
         $this->lastComment = null;
-        $this->comments = Comment::where('post_id', $this->postId)->get();
+        $this->comments = Comment::where('post_id', $this->post->id)->get();
     }
 
     public function commentCreated()

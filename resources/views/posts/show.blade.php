@@ -7,7 +7,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-9">
-                        <div class="card shadow-sm mb-4">
+                        <livewire:post-single :post="$post" :user="$user" :key="$post->id" />
+                        {{-- <div class="card shadow-sm mb-4">
                             <div class="card-header post-card-header d-flex justify-content-between">
                                 <!-- Card header w/ avatar -->
                                 <div class="d-flex align-items-center">
@@ -89,30 +90,21 @@
                                 <!-- Post reaction -->
                                 @auth
                                     <div class="post-reaction pb-2 d-flex justify-content-around align-items-center">
-                                        {{-- <div class="post-reaction-counter border "> --}}
-                                            {{-- @if (likecount > 0) TODO --}}
                                             <div>19 <i class="fa fa-thumbs-up"></i></div>
                                             <div>19 <i class="fa fa-comments"></i></div>
                                         
                                             <a href="#" class="btn btn-link mr-2">Like</a>
                                             <a href="#" class="btn btn-link mr-2">Comment</a>
                                             <a href="#" class="btn btn-link mr-2">Share</a>
-                                        {{-- </div> --}}
                                     </div>
-                                    {{-- <form action="" method="POST">
-                                        @csrf
-                
-                                        <div class="form-group">
-                                            <textarea type="text" class="form-control" rows="1" placeholder="Write a comment..."></textarea>
-                                        </div>
-                                    </form>     --}}
                                 @endauth
                                 
                                 <livewire:comment-index :postId="$post->id" />
 
                                 <livewire:comment-create :postId="$post->id"/>
                             </div>
-                        </div>  
+                        </div>  --}}
+                         
                         <!-- Basic form for creating new post-->
                         
                     </div>

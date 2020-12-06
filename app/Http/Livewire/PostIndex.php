@@ -9,20 +9,29 @@ class PostIndex extends Component
 {
     public User $user;
     public $posts;
+    public $amountOfPosts = 3;
 
     public function mount($user)
     {
         $this->user = $user;
-        $this->posts = $this->getPosts();
     }
 
     public function getPosts()
     {
-        return $this->user->posts()->latest()->get();
+        return $this->user->posts()->latest()
+                                   ->take($this->amountOfPosts)
+                                   ->get();
+    }
+
+    public function loadMore()
+    {
+        $this->amountOfPosts += 3;
     }
 
     public function render()
     {
+        $this->posts = $this->getPosts();
+
         return view('livewire.post-index');
     }
 }

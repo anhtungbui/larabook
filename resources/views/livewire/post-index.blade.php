@@ -38,4 +38,9 @@
     <livewire:post-single :post="$post" :user="$user" :key="$post->id" />
                 
     @endforeach
+    <div class="text-center">
+        <button class="btn btn-light btn-block" wire:click="loadMore">
+            Load more
+        </button>
+    </div>
 </section>

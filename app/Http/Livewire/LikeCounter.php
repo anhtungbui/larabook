@@ -16,14 +16,18 @@ class LikeCounter extends Component
         $this->likeCount = $this->post->likes->count();
     }
 
-    public function likeBtnClicked()
+    public function likeBtnClicked($postId)
     {
-        $this->likeCount += 1;
+        if ($this->post->id === $postId) {
+            $this->likeCount += 1;
+        }
     }
 
-    public function unlikeBtnClicked()
+    public function unlikeBtnClicked($postId)
     {
-        $this->likeCount -= 1;
+        if ($this->post->id === $postId) {
+            $this->likeCount -= 1;
+        }
     }
 
     public function render()

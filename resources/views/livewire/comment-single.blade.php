@@ -1,16 +1,17 @@
 <div class="d-flex">
     <div class="col-1">
         <div class="avatar avatar-xl">
-            <img class="avatar-img img-fluid" src="/storage/{{ $comment->user->profile->avatar_image }}">
+            <img class="avatar-img img-fluid" src="/storage/{{ $commenter->profile->avatar_image }}">
         </div>
     </div>
     <div class="col-11">
         <div class="border bg-gray-100 rounded py-2 pl-3">
             <a 
-                href="{{ route('profile', [$comment->user->username]) }}" 
+                href="{{ route('profile', [$commenter->username]) }}"
+                href="#"
                 class="text-dark font-weight-700"
             >
-                {{ $comment->user->name }}
+                {{ $commenter->name }}
             </a>
             <div class="pre-line">{{ $comment->content }}</div>
 

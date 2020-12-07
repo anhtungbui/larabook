@@ -1,4 +1,4 @@
-<form wire:submit.prevent="submit">
+<form wire:submit.prevent="submitComment">
     <div class="form-row pt-2">
         <div class="col-10">
             <textarea 

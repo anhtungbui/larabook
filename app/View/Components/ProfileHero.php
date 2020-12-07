@@ -2,7 +2,9 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
+use Debugbar;
 
 class ProfileHero extends Component
 {
@@ -14,6 +16,7 @@ class ProfileHero extends Component
      */
     public function __construct($user)
     {
+        // Debugbar::info($user);
         $this->user = $user;
     }
 

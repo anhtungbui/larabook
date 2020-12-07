@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Like;
 use App\Models\Notification;
 use Livewire\Component;
 
@@ -15,23 +14,20 @@ class LikeButton extends Component
     {
         $this->post = $post;
         $this->isPostLiked = $this->checkPostLiked();
+
     }
 
     public function checkPostLiked()
     {
-        return Like::where([
-                ['user_id', auth()->id()],
-                ['post_id', $this->post->id]
-            ])
-            ->get()
-            ->isNotEmpty();
+        return $this->post->likes->where('user_id', auth()->id())
+                                 ->isNotEmpty();
     }
 
     public function like()
     {
         auth()->user()->likes()->create(['post_id' => $this->post->id]);
         auth()->id() === $this->post->user->id ? '' : $this->notify();
-        $this->emit('likeBtnClicked');
+        $this->emit('likeBtnClicked', $this->post->id);
         $this->isPostLiked = true;
     }
 

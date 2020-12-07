@@ -15,20 +15,20 @@ class CommentCreate extends Component
         $this->post = $post;
     }
 
-    public function submit()
+    public function submitComment()
     {
         $this->validate([
             'content' => ['required']
             ]);
 
-        $newComment = auth()->user()->comments()->create([
+        auth()->user()->comments()->create([
                                         'content' => $this->content,
                                         'post_id' => $this->post->id,
                                     ]);
                                     
         $this->content = '';
         $this->notify();
-        $this->emit('commentCreated', $newComment->toArray());
+        $this->emit('commentCreated', $this->post->id);
     }
 
     public function notify()

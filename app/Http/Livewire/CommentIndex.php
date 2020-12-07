@@ -3,39 +3,34 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
-use App\Models\Comment;
 use Livewire\Component;
 
 class CommentIndex extends Component
 {
     public Post $post;
     public $comments;
-    public $lastComment;
     protected $listeners = ['commentCreated'];
-    
+    public $viewAllBtnClicked = false;
+
     public function mount($post)
     {
         $this->post = $post;
-        $this->comments = Comment::latest()
-                                ->where('post_id', $this->post->id)
-                                ->take(2)
-                                ->get();
-                                
-        $this->comments->count() === 2 
-            ? $this->lastComment = $this->comments->pop()
-            : $this->lastComment = null;
-
+        $this->comments = $this->post->comments;
+        $this->comments->count() > 0 
+                            ? $this->viewAllBtnClicked = false
+                            : $this->viewAllBtnClicked = true;
     }
 
     public function viewAll()
     {
-        $this->lastComment = null;
-        $this->comments = Comment::where('post_id', $this->post->id)->get();
+        $this->viewAllBtnClicked = true;
     }
 
-    public function commentCreated($newComment)
+    public function commentCreated($postId)
     {
-        $this->post->id === $newComment['post_id'] ? $this->viewAll() : '';
+        if ($this->post->id === $postId) {
+            $this->viewAllBtnClicked ? '' : $this->viewAllBtnClicked = true;
+        }
     }
 
     public function render()

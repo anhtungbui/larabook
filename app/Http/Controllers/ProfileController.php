@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Arr;
 use App\Models\User;
-use App\Models\Friend;
-use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -51,8 +48,12 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
-    {
+    public function show($username)
+    {   
+        $user = User::where('username', $username)
+                    ->with(['profile', 'posts.comments.user', 'posts.likes'])
+                    ->first();
+                    
         return view('profiles.show', compact('user'));
     }
 

@@ -118,9 +118,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                             <h6 class="dropdown-header d-flex align-items-center">
-                                <img class="dropdown-user-img" src="/storage/{{ auth()->user()->profile->avatar_image }}" />
                                 <div class="dropdown-user-details">
-                                    <div class="dropdown-user-details-name">Hi {{ auth()->user()->name }}!</div>
+                                    <div class="dropdown-user-details-name">Hi <strong>{{ auth()->user()->name }}</strong></div>
                                 </div>
                             </h6>
                             <div class="dropdown-divider"></div>

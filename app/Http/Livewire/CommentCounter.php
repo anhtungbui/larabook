@@ -7,19 +7,21 @@ use Livewire\Component;
 
 class CommentCounter extends Component
 {
-    public Post $post;
+    public $post;
     public $commentCount;
     protected $listeners = ['commentCreated'];
 
     public function mount($post)
     {
         $this->post = $post;
-        $this->commentCount = $this->post->comments->count();
+        $this->commentCount = $post->comments->count();
     }
 
-    public function commentCreated()
+    public function commentCreated($postId)
     {
-        $this->commentCount += 1;
+        if ($this->post->id === $postId) {
+            $this->commentCount += 1;
+        }
     }
 
     public function render()

@@ -87,9 +87,8 @@
                 
                 <livewire:comment-counter :post="$post" />
 
-                {{-- <div>{{ $post->comments->count() }}<i class="fa fa-comments ml-1"></i></div> --}}
-               
                 <livewire:like-button :post="$post" />
+
             </div>
         @endauth
 

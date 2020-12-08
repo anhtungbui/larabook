@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function latestPosts()
+    {
+        return $this->hasMany(Post::class)->latest();
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -87,6 +92,11 @@ class User extends Authenticatable
                                     ->withPivot('status')
                                     ->withTimestamps();
     }
+
+    // public function approvedFriends()
+    // {
+    //     return $this->friends()->where('pivot.status', 'accepted');
+    // }
 
     public function notifications()
     {

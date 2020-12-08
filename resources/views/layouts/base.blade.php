@@ -39,7 +39,16 @@
             
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ml-auto">
-
+                <!-- To Home/Newsfeed -->
+                <a
+                    class="btn btn-light btn-icon mr-1"
+                    href="/"
+                    data-toggle="tooltip" 
+                    data-placement="bottom" 
+                    title="To Home"
+                >
+                    <i class="fas fa-home"></i>
+                </a>
                 @auth
                     <!-- To Profile -->
                     <a

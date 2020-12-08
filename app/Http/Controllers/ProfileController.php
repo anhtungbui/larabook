@@ -53,7 +53,7 @@ class ProfileController extends Controller
         $user = User::where('username', $username)
                     ->with(['profile', 'posts.comments.user', 'posts.likes'])
                     ->first();
-                    
+
         return view('profiles.show', compact('user'));
     }
 

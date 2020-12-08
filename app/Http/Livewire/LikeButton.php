@@ -14,7 +14,6 @@ class LikeButton extends Component
     {
         $this->post = $post;
         $this->isPostLiked = $this->checkPostLiked();
-
     }
 
     public function checkPostLiked()
@@ -35,7 +34,7 @@ class LikeButton extends Component
     {
         auth()->user()->likes()->where('post_id', $this->post->id)
                                ->delete();
-        $this->emit('unlikeBtnClicked');
+        $this->emit('unlikeBtnClicked', $this->post->id);
         $this->isPostLiked = false;
     }
 

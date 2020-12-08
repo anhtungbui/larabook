@@ -76,3 +76,21 @@
     width: 14.75rem;
     background: white;
 }
+
+.notification__bell {
+    position: relative;
+}
+
+.notification-bell__counter {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 20px;
+    height: 20px;
+    padding-top: 5px;
+    font-size: 0.7rem;
+    text-align: center;
+}

@@ -52,7 +52,7 @@
                         {{ auth()->user()->name }}
                     </a>
                     <!-- Notifications -->
-                    <div class="nav-item dropdown no-caret pl-lg-1 dropdown-user">
+                    <div class="nav-item no-caret pl-lg-1 dropdown-user notification__bell">
                         <a
                             class="btn btn-icon btn-light"
                             href="{{ route('profile', [auth()->user()->username]) }}/notifications"
@@ -62,7 +62,11 @@
                         >
                             <div>
                                 @if(auth()->user()->notifications->count() > 0)
-                                {{ auth()->user()->notifications->count() }}<i class="far fa-bell ml-1"></i>
+                                <div>
+                                    <span class="notification-bell__counter d-none d-md-block d-sm-none">{{ auth()->user()->notifications->count() }}</span>
+                                    <span class="notification-bell__counter d-block d-md-none"></span>
+                                    <div><i class="far fa-bell"></i></div>
+                                </div>
                                 @else
                                 <i class="far fa-bell"></i>
                                 @endif
@@ -163,7 +167,6 @@
                 @endguest
             </ul>
         </nav>
-        
         <main class="pt-5">
             @yield('content')
         </main>

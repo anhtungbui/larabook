@@ -51,7 +51,7 @@ class ProfileController extends Controller
     public function show($username)
     {   
         $user = User::where('username', $username)
-                    ->with(['profile', 'posts.comments.user', 'posts.likes'])
+                    ->with(['profile', 'latestPosts', 'approvedFriends.profile'])
                     ->first();
 
         return view('profiles.show', compact('user'));

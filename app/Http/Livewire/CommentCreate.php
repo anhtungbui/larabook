@@ -9,17 +9,23 @@ class CommentCreate extends Component
 {
     public Post $post;
     public $content;
+    protected $rules = [
+        'content' => 'required|min:2'
+    ];
 
     public function mount($post)
     {
         $this->post = $post;
     }
 
+    public function render()
+    {
+        return view('livewire.comment-create');
+    }
+
     public function submitComment()
     {
-        $this->validate([
-            'content' => ['required']
-            ]);
+        $this->validate();
 
         auth()->user()->comments()->create([
                                         'content' => $this->content,
@@ -42,10 +48,5 @@ class CommentCreate extends Component
                     'type' => 'comment'
                 ]);
         }
-    }
-
-    public function render()
-    {
-        return view('livewire.comment-create');
     }
 }

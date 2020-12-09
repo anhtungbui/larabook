@@ -1,6 +1,6 @@
 <div>
     <div class="mb-4">
-        <div class="h4 font-weight-700">
+        <div class="h1 font-weight-700">
             All Notifications<span class="badge badge-red ml-2">{{ $totalAmount }}</span>
         </div>
     </div>

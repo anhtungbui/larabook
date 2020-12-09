@@ -3,22 +3,21 @@
         <!-- Card header w/ avatar -->
         <div class="d-flex align-items-center">
             <div class="avatar avatar-xl mr-3">
-                <img src="/storage/{{ $user->profile->avatar_image }}" alt="avatar" class="avatar-img img-fluid"/>
+                <img src="/storage/{{ $post->user->profile->avatar_image }}" alt="avatar" class="avatar-img img-fluid"/>
             </div>
             <div>
                 <div>
-                    <a href="{{ route('profile', [$user->username]) }}" class="text-dark">{{ $user->name }}</a>
+                    <a href="{{ route('profile', [$post->user->username]) }}" class="text-dark">{{ $post->user->name }}</a>
                 </div>
                 <small>
-                    <a href="{{ route('posts.show', [$user->username, $post->id]) }}" class="text-decoration-none text-muted">
-                        {{-- {{ date('d-m-Y', strtotime($post->updated_at)) }} at {{ date('H:i', strtotime($post->updated_at)) }} --}}
+                    <a href="{{ route('posts.show', [$post->user->username, $post->id]) }}" class="text-decoration-none text-muted">
                         {{ $post->created_at->diffForHumans() }}
                     </a>
                 </small>
             </div>
         </div>
 
-        @auth
+        {{-- @auth
             @if (auth()->id() === $user->id)
             <div class="dropdown">
                 <button 
@@ -70,7 +69,7 @@
                 </div>
             </div>
             @endif
-        @endauth
+        @endauth --}}
     </div>
     <div class="card-body">
         <div class="pb-3 pre-line">{{ $post->content }}</div>

@@ -9,12 +9,10 @@ use Livewire\Component;
 class PostSingle extends Component
 {
     public Post $post;
-    public User $user;
 
-    public function mount($post, $user)
+    public function mount($post)
     {
         $this->post = $post;
-        $this->user = $user;
     }
 
     public function render()

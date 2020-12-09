@@ -6,9 +6,41 @@
     <div class="row pt-5">
         <!-- Left column -->
         <div class="col-lg-4 col-md-6">
-            <div class="h4 font-weight-700">
+            <div class="h1 font-weight-700 py-2">
                 News Feed
             </div>
+            <div class="card shadow-sm mb-4">
+                <a href="/" class="btn">
+                    <div class="card-body" >
+                        <div class="h3 text-muted">
+                            <i class="fas fa-user-friends fa-2x mr-2 mb-2 text-muted"></i><br />
+                            <span>Your Friends</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{-- <div class="card shadow-sm mb-4"> --}}
+                {{-- <a href="#" class="btn btn-light">
+                    <div class="card-body" >
+                        <div class="h3">
+                            <i class="fas fa-heart fa-2x mr-2 mb-2"></i><br />
+                            From People You Follow
+                        </div>
+                    </div>
+                </a> --}}
+            {{-- </div> --}}
+            <livewire:newsfeed-followings />
+            <livewire:newsfeed-groups />
+            {{-- <div class="card shadow-sm mb-4">
+                <a href="#" class="btn btn-light">
+                    <div class="card-body" >
+                        <div class="h3">
+                            <i class="fas fa-users fa-2x mr-2 mb-2"></i><br />
+                            <span>From Groups</span>
+                        </div>
+                    </div>
+                </a>
+            </div> --}}
         </div>
 
         <!-- Right column -->

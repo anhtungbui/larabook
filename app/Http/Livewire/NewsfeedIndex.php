@@ -8,28 +8,41 @@ use Livewire\Component;
 
 class NewsfeedIndex extends Component
 {
-    public $posts;
     public $friends;
+    public $posts;
+    // protected $posts;
+    protected $listeners = [
+        'followingsClicked',
+        'groupClicked'
+    ];
 
     public function mount()
     {
-      
+      $this->posts = $this->getNewsFromFriends();
     }
 
     public function render()
     {
+        // dd($this->posts);
         // For each random friend, get one latest post (10 people)
-        $postsFromFriends = $this->getNewsFromFriends();
+        // $postsFromFriends = $this->getNewsFromFriends();
+        // $posts = $this->getNewsFromFriends();
 
         // For each random following user, get one latest post (5 people)
-        $postsFromFollowings = $this->getNewsFromFollowings();
+        // $postsFromFollowings = $this->getNewsFromFollowings();
 
-        $this->posts = $postsFromFriends->merge($postsFromFollowings);
+        // $this->posts = $postsFromFriends->merge($postsFromFollowings);
                                         
-        $this->posts = $this->filterEmpty($this->posts)
-                            ->sortByDesc('created_at');
+        // $this->posts = $this->filterEmpty($this->posts)
+        //                     ->sortByDesc('created_at');
 
         return view('livewire.newsfeed-index');
+
+        // $posts = $this->posts;
+        // dd($posts);
+
+        // $x = $posts;
+        // return view('livewire.newsfeed-index', ['posts' => $posts]);
     }
 
     protected function getNewsFromFriends()
@@ -78,5 +91,31 @@ class NewsfeedIndex extends Component
         return $collection ->filter(function ($item) {
             return isset($item);
         });
+    }
+
+    public function followingsClicked()
+    {
+        $this->posts = $this->getNewsFromFollowings();
+        $this->posts = $this->filterEmpty($this->posts);
+    //   $this->updatedPosts();
+    }
+
+    public function updatedPosts()
+    {
+        dd('updated');
+    }
+
+    public function groupsClicked()
+    {
+
+    }
+
+    public function friendsClicked()
+    {
+        $this->posts = $this->getNewsFromFriends();
+    }
+
+    public function loadMore()
+    {   
     }
 }

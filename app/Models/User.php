@@ -93,10 +93,11 @@ class User extends Authenticatable
                                     ->withTimestamps();
     }
 
-    // public function approvedFriends()
-    // {
-    //     return $this->friends()->where('pivot.status', 'accepted');
-    // }
+    public function approvedFriends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+                                    ->wherePivot('status', 'accepted');
+    }
 
     public function notifications()
     {

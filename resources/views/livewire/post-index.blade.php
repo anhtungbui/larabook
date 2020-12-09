@@ -35,7 +35,7 @@
     <!-- All Posts -->
     @foreach ($posts as $post)
     
-    <livewire:post-single :post="$post" :user="$user" :key="$post->id" />
+    <livewire:post-single :post="$post" :key="$post->id" />
                 
     @endforeach
         

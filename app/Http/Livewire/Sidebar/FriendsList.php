@@ -14,7 +14,10 @@ class FriendsList extends Component
     public function mount(User $user)
     {   
         $this->user = $user;
-        $this->friends = $this->getFriends($user);
+        $this->friends = $this->user->approvedFriends;
+        // dd($this->friends);
+        // auth()->user()->friends->where('pivot.status', 'accepted');
+        // $this->friends = $this->getFriends($user);
     }
 
     protected function getFriends($user)

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Profile;
 use Illuminate\Database\Seeder;
 
@@ -23,14 +25,14 @@ class RootUserSeeder extends Seeder
                 'password' => bcrypt('12345678'),
             ],
             [
-                'name' => 'Taylor Otwell',
-                'username' => 'laravel',
+                'name' => 'Benjamin Hopper',
+                'username' => 'ben',
                 'email' => 'b@example.com',
                 'password' => bcrypt('12345678'),
             ],
             [
-                'name' => 'Max Mustermann',
-                'username' => 'max',
+                'name' => 'Joy Harrington',
+                'username' => 'joy',
                 'email' => 'c@example.com',
                 'password' => bcrypt('12345678'),
             ],
@@ -53,5 +55,20 @@ class RootUserSeeder extends Seeder
                 'location' => 'The Earth'
             ],
         ]);
+
+        Post::factory()->times(5)->create(['user_id' => 1]);
+        Post::factory()->times(2)->create(['user_id' => 2]);
+
+        Comment::factory()->times(2)->create([
+                                    'user_id' => 2,
+                                    'post_id' => 1,
+                                ]);
+
+        Comment::factory()->times(2)->create([
+                                    'user_id' => 3,
+                                    'post_id' => 1,
+                                ]);
+
+
     }
 }

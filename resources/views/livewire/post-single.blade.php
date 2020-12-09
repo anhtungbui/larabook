@@ -11,7 +11,8 @@
                 </div>
                 <small>
                     <a href="{{ route('posts.show', [$user->username, $post->id]) }}" class="text-decoration-none text-muted">
-                        {{ date('d-m-Y', strtotime($post->updated_at)) }} at {{ date('H:i', strtotime($post->updated_at)) }}
+                        {{-- {{ date('d-m-Y', strtotime($post->updated_at)) }} at {{ date('H:i', strtotime($post->updated_at)) }} --}}
+                        {{ $post->created_at->diffForHumans() }}
                     </a>
                 </small>
             </div>

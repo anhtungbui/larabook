@@ -43,21 +43,19 @@
             </div>
         </div>
     @endif
-   
-    @foreach ($posts as $post)
-        <livewire:post-single :post="$post" :user="$post->user" :key="$post->id" />
-    @endforeach
-    
 
+    @foreach ($posts as $post)
+        <livewire:post-single :post="$post" :key="$post->id" />
+    @endforeach
 
     {{-- <div class="text-center">
         <button class="btn btn-light btn-block" wire:click="$emit('loadMore')">
             Load more
         </button>
     </div> --}}
-    <div class="text-center">
+    {{-- <div class="text-center">
         <button class="btn btn-light btn-block" wire:click="loadMore">
             Load more
         </button>
-    </div>
+    </div> --}}
 </section>

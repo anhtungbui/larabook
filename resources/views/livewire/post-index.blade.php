@@ -1,7 +1,8 @@
 <section class="col-xl-8">
+    
     <!-- Hidden Alerts -->
     @if (session("status"))
-    <div class="alert alert-success shadow-sm" role="alert">
+    <div class="alert alert-success shadow-sm alert-message" role="alert">
         <i class="fas fa-check-circle mr-2"></i>{{ session("status") }}
     </div>
     @endif
@@ -9,7 +10,7 @@
     @auth
         @if (auth()->id() === $user->id)
         <!-- What's on your mind Card -->
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow-sm mb-4" data-aos="fade-up">
             <div class="card-body d-flex justify-content-between">
                 <div class="d-flex align-items-center">
                     <div class="avatar avatar-xl mr-3">
@@ -51,4 +52,13 @@
         </a>
         @endif
     @endif
+    <script>
+        document.addEventListener('livewire:load', function () {
+            if ($('.alert-message')) {
+                setTimeout(() => {
+                    $('.alert-message').fadeOut('slow');
+                }, 3000);
+            }
+        });
+    </script>
 </section>

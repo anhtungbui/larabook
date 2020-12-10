@@ -1,4 +1,4 @@
-<div class="card shadow-sm mb-4">
+<div class="card shadow-sm mb-4" data-aos="fade-up">
     <div class="card-header post-card-header d-flex justify-content-between">
         <!-- Card header w/ avatar -->
         <div class="d-flex align-items-center">
@@ -97,4 +97,9 @@
 
         <livewire:comment-create :post="$post" :key="$post->id" />
     </div>
+    <script>
+        document.addEventListener('livewire:load', () => {
+           
+        });
+    </script>
 </div> 

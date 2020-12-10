@@ -14,7 +14,6 @@ class CommentIndex extends Component
 
     public function mount($post)
     {
-        // dd($post);
         $this->post = $post;
         $this->comments = $this->post->comments;
         $this->comments->count() > 0 

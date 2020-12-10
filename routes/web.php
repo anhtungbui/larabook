@@ -27,7 +27,7 @@ use App\Http\Livewire\Friends\FriendsIndex;
 
 Route::get('/', function () {
     return auth()->check() 
-            ? view('newsfeed')
+            ? view('newsfeed.index')
             : view('welcome');     
 });
 
@@ -37,6 +37,10 @@ Auth::routes();
 
 /** Search */
 Route::get('/search', [SearchController::class, 'index']);
+
+/** Newsfeed */
+Route::view('/newsfeed/followings', 'newsfeed.newsfeed-followings');
+
 
 // Testing purpose
 Route::view('/profile', 'layouts.base'); 

@@ -10,37 +10,35 @@
                 News Feed
             </div>
             <div class="card shadow-sm mb-4">
-                <a href="/" class="btn">
+                <a href="/" class="btn btn-light">
                     <div class="card-body" >
                         <div class="h3 text-muted">
-                            <i class="fas fa-user-friends fa-2x mr-2 mb-2 text-muted"></i><br />
+                            <i class="fas fa-user-friends fa-2x mr-2 mb-2"></i><br />
                             <span>Your Friends</span>
                         </div>
                     </div>
                 </a>
             </div>
-            {{-- <div class="card shadow-sm mb-4"> --}}
-                {{-- <a href="#" class="btn btn-light">
+            <div class="card shadow-sm mb-4">
+                <a href="/newsfeed/followings" class="btn">
                     <div class="card-body" >
                         <div class="h3">
                             <i class="fas fa-heart fa-2x mr-2 mb-2"></i><br />
-                            From People You Follow
-                        </div>
-                    </div>
-                </a> --}}
-            {{-- </div> --}}
-            <livewire:newsfeed-followings />
-            <livewire:newsfeed-groups />
-            {{-- <div class="card shadow-sm mb-4">
-                <a href="#" class="btn btn-light">
-                    <div class="card-body" >
-                        <div class="h3">
-                            <i class="fas fa-users fa-2x mr-2 mb-2"></i><br />
-                            <span>From Groups</span>
+                            People You Follow
                         </div>
                     </div>
                 </a>
-            </div> --}}
+            </div>
+            <div class="card shadow-sm mb-4">
+                <a href="/newsfeed/groups" class="btn btn-light">
+                    <div class="card-body" >
+                        <div class="h3 text-muted">
+                            <i class="fas fa-users fa-2x mr-2 mb-2"></i><br />
+                            Your Groups
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
 
         <!-- Right column -->
@@ -51,7 +49,7 @@
                 </div>
             @endif
             
-            <livewire:newsfeed-index />
+            <livewire:newsfeed-followings />
         </div>
     </div>
 

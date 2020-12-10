@@ -12,6 +12,7 @@
         <title>Larabook</title>
 
         <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link href={{ asset("css/app.css") }} rel="stylesheet" />
         <link href={{ asset("css/sb-admin.css") }} rel="stylesheet" />
         <link href={{ asset("css/custom.css") }} rel="stylesheet" />
@@ -184,6 +185,10 @@
         <!-- Scripts -->
         <script src={{ asset("js/app.js") }}></script>
         <script src={{ asset("js/sb-admin.js") }}></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script>
         @livewireScripts
     </body>
 </html>

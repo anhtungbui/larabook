@@ -30,6 +30,10 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
     -   CRUD
     -   Join group
     -   Send invitation
+-   Newsfeed
+    -   From friends ✔️
+    -   From followings ✔️
+    -   From groups
 
 <br />
 

@@ -1,7 +1,10 @@
 <div>
     <div class="mb-4">
         <div class="h1 font-weight-700">
-            All Notifications<span class="badge badge-red ml-2">{{ $totalAmount }}</span>
+            All Notifications
+            @if ($unreadNotificationsCount > 0)
+                <span class="badge badge-red ml-2">{{ $unreadNotificationsCount }} New</span>
+            @endif
         </div>
     </div>
     @if (session()->has('message'))

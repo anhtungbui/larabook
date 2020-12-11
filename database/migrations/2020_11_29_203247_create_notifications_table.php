@@ -30,6 +30,7 @@ class CreateNotificationsTable extends Migration
             $table->string('content');
             $table->string('source_url');
             $table->string('type');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }

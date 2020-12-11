@@ -9,7 +9,7 @@ class NotificationIndex extends Component
 {
     public $notifications;
     public $amount = 5;
-    public $totalAmount;
+    public $unreadNotificationsCount;
 
     protected $listeners = [
         'deleteClicked' => '$refresh',
@@ -19,18 +19,29 @@ class NotificationIndex extends Component
 
     public function mount()
     {
-        $this->totalAmount = Notification::latest()
-                    ->where('user_id', auth()->id())
-                    ->get()
-                    ->count();
+        $this->unreadNotificationsCount = auth()->user()->unreadNotifications->count();
+    }
+
+    public function render()
+    {
+        $this->notifications = $this->getNotifications();
+
+        return view('livewire.notification-index');
     }
 
     protected function getNotifications()
     {
-        return Notification::latest()
+        $notifications = Notification::latest()
         ->where('user_id', auth()->id())
         ->take($this->amount)
         ->get();
+
+        foreach($notifications as $notification) {
+            $notification->is_read = true;
+            $notification->save();
+        }
+
+        return $notifications;
     }
 
     public function notificationDeleted($notificationId)
@@ -58,13 +69,6 @@ class NotificationIndex extends Component
     
     protected function decreaseTotalAmount()
     {
-        $this->totalAmount -= 1;
-    }
-    
-    public function render()
-    {
-        $this->notifications = $this->getNotifications();
-
-        return view('livewire.notification-index');
+        $this->unreadNotificationsCount -= 1;
     }
 }

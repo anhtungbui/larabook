@@ -71,9 +71,9 @@
                             title="Notifications"
                         >
                             <div>
-                                @if(auth()->user()->notifications->count() > 0)
+                                @if(auth()->user()->unreadNotifications->count() > 0)
                                 <div>
-                                    <span class="notification-bell__counter d-none d-md-block d-sm-none">{{ auth()->user()->notifications->count() }}</span>
+                                    <span class="notification-bell__counter d-none d-md-block d-sm-none">{{ auth()->user()->unreadNotifications->count() }}</span>
                                     <span class="notification-bell__counter d-block d-md-none"></span>
                                     <div><i class="far fa-bell"></i></div>
                                 </div>

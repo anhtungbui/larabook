@@ -8,7 +8,9 @@
     @endif
     
     @auth
-        @if (auth()->id() === $user->id)
+
+        @can('create-post', $user)
+        {{-- @if (auth()->id() === $user->id) --}}
         <!-- What's on your mind Card -->
         <div class="card shadow-sm mb-4" data-aos="fade-up">
             <div class="card-body d-flex justify-content-between">
@@ -21,16 +23,20 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <button 
+                    <a 
+                        href="{{ route('posts.create', [auth()->user()->username]) }}"
                         class="btn btn-primary rounded-pill shadow-sm"
-                        onClick="location.href = '{{ route('profile', [auth()->user()->username]) }}/posts/create'"
                     >
-                        <i class="fas fa-edit ml-1 mr-2"></i>Create New Post
-                    </button>
+                        <div>
+                            <i class="fas fa-edit ml-1 mr-2"></i>Create New Post
+                        </div>
+                    </a>
                 </div>
             </div>
         </div> 
-        @endif
+        {{-- @endif --}}
+            
+        @endcan
     @endauth
     
     <!-- All Posts -->

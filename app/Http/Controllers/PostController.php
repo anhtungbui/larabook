@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use Illuminate\Http\Request;
+use Storage;
 use App\Models\Post;
 use App\Models\User;
-use Storage;
+use App\Models\Comment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -88,18 +89,19 @@ class PostController extends Controller
      */
     public function update(Request $request, User $user, Post $post)
     {
+        Gate::authorize('update-post', $post);
+        // if (!Gate::allows('update-post', $post)) {
+        //     abort(403);
+        // }
+
         $validatedData = $request->validate([ 
                 'content' => ['required'], 
             ]);
-        
-        if (auth()->check()) {
-            $post->update($validatedData);
+    
+        $post->update($validatedData);
 
-            return redirect(route('profile', [auth()->user()->username] ))
-                    ->with('status', 'Post updated');
-
-        }
-        
+        return redirect(route('profile', [auth()->user()->username] ))
+                        ->with('status', 'Post updated');
     }
 
     /**
@@ -110,11 +112,14 @@ class PostController extends Controller
      */
     public function destroy(User $user, Post $post)
     {
-        if (auth()->check()) {
-            $post->delete();
-            
-            return redirect(route('profile', [auth()->user()->username] ))
-                ->with('status', 'Post deleted');
+        Gate::authorize('delete-post', $post);
+
+        $post->delete();
+        
+        return redirect(route('profile', [auth()->user()->username] ))
+            ->with('status', 'Post deleted');
+        
+            if (auth()->check()) {
         } 
     }
 }

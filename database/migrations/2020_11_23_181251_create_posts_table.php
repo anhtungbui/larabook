@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('content');
             $table->string('image_src')->nullable();
+            $table->foreignId('best_reply_id')->nullable();
             $table->timestamps();
         });
     }

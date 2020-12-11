@@ -17,8 +17,51 @@
             </div>
         </div>
 
-        {{-- @auth
-            @if (auth()->id() === $user->id)
+        <div class="dropdown">
+            <button class="btn btn-light btn-icon" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Save Post</a>
+                <div class="dropdown-divider"></div>
+                @can('update-post', $post)
+                    <a 
+                        class="dropdown-item"
+                        href="{{ route('posts.edit', [$post->user->username, $post->id]) }}" 
+                    >
+                        Edit
+                    </a>
+                @endcan
+
+                @can('delete-post', $post)
+                <div class="dropdown-item">
+                    <form 
+                    action="{{ route('posts.destroy', [$post->user->username, $post->id]) }}"
+                    method="POST"
+                
+                >
+                    @csrf
+                    @method('DELETE')   
+                    {{-- <input type="text" class="d-none" name="post_id" value="{{ $post->id }}"> --}}
+                    <input type="submit" class="bg-transparent pl-0 border-0" value="Delete Post">
+                    </form>
+
+                </div>
+
+                    {{-- <a 
+                        class="dropdown-item"
+                        href="{{ route('posts.destroy', [$post->user->username, $post->id])}}"
+                    >
+                        Delete
+                    </a> --}}
+                @endcan
+            </div>
+          </div>
+
+      
+
+        @auth
+            {{-- @if (auth()->id() === $post->user->id)
             <div class="dropdown">
                 <button 
                     class="btn btn-icon btn-light" 
@@ -68,8 +111,8 @@
                     </div>
                 </div>
             </div>
-            @endif
-        @endauth --}}
+            @endif --}}
+        @endauth
     </div>
     <div class="card-body">
         <div class="pb-3 pre-line">{{ $post->content }}</div>

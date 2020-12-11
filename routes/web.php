@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BestReplyController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
@@ -77,13 +78,13 @@ Route::prefix('/{user:username}')->middleware('auth')
     Route::get('/notifications', [NotificationController::class, 'index'])->named('notifications.index');
 
     /** Posts */
-    Route::get('/posts/create', [PostController::class, 'create']);
-    Route::post('/posts', [PostController::class, 'store']);
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-    Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
-    Route::put('/posts/{post}', [PostController::class, 'update']);
-    Route::delete('/posts/{post}', [PostController::class, 'destroy']);
-
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+                                    
     Route::prefix('/posts/{post}')->group(function () {
 
         /** Comments */
@@ -94,6 +95,9 @@ Route::prefix('/{user:username}')->middleware('auth')
         Route::put('/comments/{comment}', [CommentController::class, 'update']);
         Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
         
+        /** Best reply */
+        Route::put('/comments/{comment}/rate', [BestReplyController::class, 'update'])->name('comments.rate');
+
         /** Like */
         Route::post('/like', [LikeController::class, 'store']);
         Route::delete('/unlike', [LikeController::class, 'destroy']);

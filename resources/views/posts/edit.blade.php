@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
-                        <!-- Basic form for creating new post-->
+                        <!-- Edit post-->
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header justify-content-center">
                                 <h3 class="font-weight-light my-4">Edit Post</h3>
@@ -22,10 +22,20 @@
                                     </div>
                                 @endif
                                 <!-- Edit post form-->
-                                <form
+                                {{-- <form
                                     enctype="multipart/form-data" 
                                     method="POST" 
                                     action="{{ route('posts.show', [auth()->user()->username, $post->id ]) }}"
+                                > --}}
+                                <form
+                                    enctype="multipart/form-data" 
+                                    method="POST" 
+                                    action="/{{ auth()->user()->username }}/posts/{{ $post->id }}"
+                                >
+                                <form
+                                    enctype="multipart/form-data" 
+                                    method="POST" 
+                                    action="{{ route('posts.update', [auth()->user()->username, $post->id]) }}"
                                 >
                                     @csrf
                                     @method('PUT')

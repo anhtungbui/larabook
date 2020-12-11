@@ -37,7 +37,7 @@ class CommentCreate extends Component
         $this->emit('commentCreated', $this->post->id);
     }
 
-    public function notify()
+    protected function notify()
     {
         // Fire a notification only if we do some activities on other people's profile
         if ($this->post->user->id !== auth()->id()) {

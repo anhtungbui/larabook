@@ -12,6 +12,7 @@ class PostSingle extends Component
     public function mount($post)
     {
         $this->post = $post;
+        // dd($post);
     }
 
     public function render()

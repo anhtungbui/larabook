@@ -28,7 +28,7 @@ class PostIndex extends Component
     protected function getPosts()
     {
         return $this->user->latestPosts()
-                          ->with('likes', 'comments', 'user')
+                          ->with('likes', 'comments.user.profile', 'user')
                           ->paginate(5);
     }
 }

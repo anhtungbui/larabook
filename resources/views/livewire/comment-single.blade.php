@@ -18,11 +18,11 @@
         </div>
         <small class="text-muted ml-3 d-inline-flex">
             <div>{{ $comment->created_at->diffForHumans() }}</div>
-            @can('update-post', $comment->post)
+            @can('update-post', $post)
             {{-- <div><i class="far fa-heart ml-2"></i> Mark as Best reply</div> --}}
             <div>
                 <form 
-                    action="{{ route('comments.rate', [$commenter->username, $comment->post->id, $comment->id]) }}" 
+                    action="{{ route('comments.rate', [$commenter->username, $post->id, $comment->id]) }}" 
                     method="POST"
                 >
                     @csrf
@@ -36,7 +36,7 @@
             {{-- <div>{{ $comment->post->best_reply_id }}</div> --}}
             @endcan
 
-            @if ($comment->id === $comment->post->best_reply_id)
+            @if ($comment->id === $post->best_reply_id)
                 <div class="text-danger ml-3">Best reply <i class="fas fa-heart"></i> </div>
             @endif
 

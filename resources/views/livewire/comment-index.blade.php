@@ -11,7 +11,7 @@
     @if($viewAllBtnClicked)
         @foreach ($post->comments as $comment)
 
-        <livewire:comment-single :comment="$comment" :key="$comment->id" />
+        <livewire:comment-single :comment="$comment" :post="$post" :key="$comment->id" />
 
         @endforeach
     @endif

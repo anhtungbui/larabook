@@ -12,7 +12,6 @@ class NotificationIndex extends Component
     public $unreadNotificationsCount;
 
     protected $listeners = [
-        'deleteClicked' => '$refresh',
         'notificationDeleted',
         'friendRequestUpdated',
     ];
@@ -47,8 +46,8 @@ class NotificationIndex extends Component
     public function notificationDeleted($notificationId)
     {
         Notification::findOrFail($notificationId)->delete();
+        $this->dispatchBrowserEvent('action-performed', ['message' => 'Notification deleted']);
         $this->decreaseTotalAmount();
-        session()->flash('message', 'Notification deleted');
     }
 
     public function loadMore()

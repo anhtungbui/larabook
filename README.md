@@ -39,7 +39,7 @@ A social network inspired by _Facebook_ built with PHP **Laravel**.
 
 # Tech stack
 
--   Frontend: Blade, Bootstrap, Livewire
+-   Frontend: Blade, Bootstrap, Livewire, jQuery
 -   Backend: PHP Laravel, MySQL
 
 <br />

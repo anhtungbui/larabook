@@ -94,3 +94,14 @@
     font-size: 0.7rem;
     text-align: center;
 }
+
+.message-bar {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}

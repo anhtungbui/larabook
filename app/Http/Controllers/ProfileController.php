@@ -101,7 +101,7 @@ class ProfileController extends Controller
         User::find(auth()->user()->id)->profile->update($validatedData);
 
         return redirect(route('profile', [auth()->user()->username]))
-                                        ->with('status', 'Profile updated');
+                                        ->with('message', 'Profile updated');
     }
 
     /**

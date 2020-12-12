@@ -1,14 +1,5 @@
 <section class="col-xl-8">
-    
-    <!-- Hidden Alerts -->
-    @if (session("status"))
-    <div class="alert alert-success shadow-sm alert-message" role="alert">
-        <i class="fas fa-check-circle mr-2"></i>{{ session("status") }}
-    </div>
-    @endif
-    
     @auth
-
         @can('create-post', $user)
         {{-- @if (auth()->id() === $user->id) --}}
         <!-- What's on your mind Card -->
@@ -42,7 +33,7 @@
     <!-- All Posts -->
     @foreach ($posts as $post)
     
-    <livewire:post-single :post="$post" :key="$post->id" />
+        <livewire:post-single :post="$post" :key="$post->id" />
                 
     @endforeach
         
@@ -50,21 +41,12 @@
 
     @if ($posts->hasPages())
         @if ($posts->hasMorePages())
-        <a 
-            href="{{ $posts->nextPageURL() }}"
-            class="btn btn-light btn-block"
-        >
-           Load more
-        </a>
+            <a 
+                href="{{ $posts->nextPageURL() }}"
+                class="btn btn-light btn-block"
+            >
+            Load more
+            </a>
         @endif
     @endif
-    <script>
-        document.addEventListener('livewire:load', function () {
-            if ($('.alert-message')) {
-                setTimeout(() => {
-                    $('.alert-message').fadeOut('slow');
-                }, 3000);
-            }
-        });
-    </script>
 </section>

@@ -52,7 +52,7 @@ class PostController extends Controller
         auth()->user()->posts()->create($validatedData);
 
         return redirect(route('profile', [auth()->user()->username] ))
-                ->with('status', 'Post created');
+                ->with('message', 'Post created');
 
     }
 
@@ -101,7 +101,7 @@ class PostController extends Controller
         $post->update($validatedData);
 
         return redirect(route('profile', [auth()->user()->username] ))
-                        ->with('status', 'Post updated');
+                        ->with('message', 'Post updated');
     }
 
     /**
@@ -117,7 +117,7 @@ class PostController extends Controller
         $post->delete();
         
         return redirect(route('profile', [auth()->user()->username] ))
-            ->with('status', 'Post deleted');
+            ->with('message', 'Post deleted');
         
             if (auth()->check()) {
         } 

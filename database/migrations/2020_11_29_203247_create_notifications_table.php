@@ -28,8 +28,8 @@ class CreateNotificationsTable extends Migration
                   ->onDelete('cascade');
                   
             $table->string('content');
-            $table->string('source_url');
-            $table->string('type');
+            $table->string('source_url')->nullable();
+            $table->string('type')->nullable();
             $table->boolean('is_read')->default(false);
             $table->timestamps();
         });

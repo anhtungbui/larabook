@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use App\Models\Friend;
 use Livewire\Component;
-use App\Models\Notification;
 
 class FriendRequestIndex extends Component
 {
@@ -43,10 +42,10 @@ class FriendRequestIndex extends Component
         ]);
         
         $this->notify($requesterId);
-        $this->emit('friendRequestUpdated', $requesterId);
+        $this->emit('friendRequestUpdated', $requesterId);      // NotificationIndex listens to it
+        $this->dispatchBrowserEvent('action-performed', ['message' => 'Friend request accepted']);
         
         $this->friendRequests = $this->getFriendRequests();
-        session()->flash('message', 'Friend request accepted');
     }
 
     public function requestDeclined($requesterId)
@@ -54,10 +53,10 @@ class FriendRequestIndex extends Component
         $friendship = Friend::where('user_id', $requesterId);
         $friendship->delete();
 
-        $this->emit('friendRequestUpdated', $requesterId);
-        
+        $this->emit('friendRequestUpdated', $requesterId);      // NotificationIndex listens to it
+        $this->dispatchBrowserEvent('action-performed', ['message' => 'Friend request declined']);
+
         $this->friendRequests = $this->getFriendRequests();
-        session()->flash('message', 'Friend request declined');
     }
 
     protected function notify($requesterId)

@@ -23,172 +23,178 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="nav-fixed">
-        <div>
+        <header>
             <nav 
             class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white pl-5 pr-5" 
             id="sidenavAccordion"
-        >
-            <!-- Navbar Brand-->
-            <!-- * * Tip * * You can use text or an image for your navbar brand.-->
-            <!-- * * * * * * When using an image, we recommend the SVG format.-->
-            <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand text-primary" href="/">Larabook</a>
-            <!-- Navbar Search Input-->
-            <!-- * * Note: * * Visible only on and above the md breakpoint-->
+            >
+                <!-- Navbar Brand-->
+                <!-- * * Tip * * You can use text or an image for your navbar brand.-->
+                <!-- * * * * * * When using an image, we recommend the SVG format.-->
+                <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+                <a class="navbar-brand text-primary" href="/">Larabook</a>
+                <!-- Navbar Search Input-->
+                <!-- * * Note: * * Visible only on and above the md breakpoint-->
 
-            <livewire:navbar.search-bar />
-            
-            <!-- Navbar Items-->
-            <ul class="navbar-nav align-items-center ml-auto">
-                <!-- To Home/Newsfeed -->
-                <a
-                    class="btn btn-light btn-icon mr-1"
-                    href="/"
-                    data-toggle="tooltip" 
-                    data-placement="bottom" 
-                    title="To Home"
-                >
-                    <i class="fas fa-home"></i>
-                </a>
-                @auth
-                    <!-- To Profile -->
+                <livewire:navbar.search-bar />
+                
+                <!-- Navbar Items-->
+                <ul class="navbar-nav align-items-center ml-auto">
+                    <!-- To Home/Newsfeed -->
                     <a
-                        class="btn btn-light rounded-pill d-none d-lg-block"
-                        href="{{ route('profile', [auth()->user()->username]) }}"
+                        class="btn btn-light btn-icon mr-1"
+                        href="/"
                         data-toggle="tooltip" 
                         data-placement="bottom" 
-                        title="To Your Profile"
+                        title="To Home"
                     >
-                        {{ auth()->user()->name }}
+                        <i class="fas fa-home"></i>
                     </a>
-                    <!-- Notifications -->
-                    <div class="nav-item no-caret pl-lg-1 dropdown-user notification__bell">
+                    @auth
+                        <!-- To Profile -->
                         <a
-                            class="btn btn-icon btn-light"
-                            href="{{ route('profile', [auth()->user()->username]) }}/notifications"
+                            class="btn btn-light rounded-pill d-none d-lg-block"
+                            href="{{ route('profile', [auth()->user()->username]) }}"
                             data-toggle="tooltip" 
                             data-placement="bottom" 
-                            title="Notifications"
+                            title="To Your Profile"
                         >
-                            <div>
-                                @if(auth()->user()->unreadNotifications->count() > 0)
-                                <div>
-                                    <span class="notification-bell__counter d-none d-md-block d-sm-none">{{ auth()->user()->unreadNotifications->count() }}</span>
-                                    <span class="notification-bell__counter d-block d-md-none"></span>
-                                    <div><i class="far fa-bell"></i></div>
-                                </div>
-                                @else
-                                <i class="far fa-bell"></i>
-                                @endif
-                            </div>
+                            {{ auth()->user()->name }}
                         </a>
-
-                    </div>
-                    <!-- Create Dropdown-->
-                    <li class="nav-item dropdown no-caret pl-lg-1 mr-lg-1 dropdown-user">
-                        <a 
-                            class="btn btn-icon btn-light dropdown-toggle" 
-                            id="navbarDropdownUserImage" 
-                            href="javascript:void(0);" 
-                            role="button" 
-                            data-toggle="dropdown" 
-                            aria-haspopup="true" 
-                            aria-expanded="false"
-                        >
-                            <i class="fas fa-plus"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-                            <h6 class="dropdown-header d-flex align-items-center">
-                                <div class="dropdown-user-details">
-                                    <div class="dropdown-user-details-name">Create</div>
-                                </div>
-                            </h6>
-                            <div class="dropdown-divider"></div>
-                            <!-- New Post -->
-                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}/posts/create">
-                                <div class="dropdown-item-icon"><i class="fas fa-edit"></i></div>
-                                New Post
-                            </a>
-                            <!-- New Group -->
-                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}/posts/create">
-                                <div class="dropdown-item-icon"><i class="fa fa-users"></i></div>
-                                New Group
-                            </a>
-                            
-                        </div>
-                    </li>
-                    <!-- User Dropdown-->
-                    <li class="nav-item dropdown no-caret mr-3 mr-lg-0 dropdown-user">
-                        <a 
-                            class="btn btn-icon btn-transparent-dark dropdown-toggle" 
-                            id="navbarDropdownUserImage" 
-                            href="javascript:void(0);" 
-                            role="button" 
-                            data-toggle="dropdown" 
-                            aria-haspopup="true" 
-                            aria-expanded="false"
-                        >
-                            <img class="img-fluid" src="/storage/{{ auth()->user()->profile->avatar_image }}" />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-                            <h6 class="dropdown-header d-flex align-items-center">
-                                <div class="dropdown-user-details">
-                                    <div class="dropdown-user-details-name">Hi <strong>{{ auth()->user()->name }}</strong></div>
-                                </div>
-                            </h6>
-                            <div class="dropdown-divider"></div>
-                            <!-- Profile -->
-                            <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}">
-                                <div class="dropdown-item-icon"><i class="fa fa-user"></i></div>
-                                Profile
-                            </a>
-                            <!-- Logout -->
-                            <a 
-                                class="dropdown-item" 
-                                href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();"
+                        <!-- Notifications -->
+                        <div class="nav-item no-caret pl-lg-1 dropdown-user notification__bell">
+                            <a
+                                class="btn btn-icon btn-light"
+                                href="{{ route('profile', [auth()->user()->username]) }}/notifications"
+                                data-toggle="tooltip" 
+                                data-placement="bottom" 
+                                title="Notifications"
                             >
-                                <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                                Logout
+                                <div>
+                                    @if(auth()->user()->unreadNotifications->count() > 0)
+                                    <div>
+                                        <span class="notification-bell__counter d-none d-md-block d-sm-none">{{ auth()->user()->unreadNotifications->count() }}</span>
+                                        <span class="notification-bell__counter d-block d-md-none"></span>
+                                        <div><i class="far fa-bell"></i></div>
+                                    </div>
+                                    @else
+                                    <i class="far fa-bell"></i>
+                                    @endif
+                                </div>
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+
                         </div>
-                    </li>     
-                @endauth
-                
-                <!-- Authentication Links -->
-                @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <!-- Create Dropdown-->
+                        <li class="nav-item dropdown no-caret pl-lg-1 mr-lg-1 dropdown-user">
+                            <a 
+                                class="btn btn-icon btn-light dropdown-toggle" 
+                                id="navbarDropdownUserImage" 
+                                href="javascript:void(0);" 
+                                role="button" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                aria-expanded="false"
+                            >
+                                <i class="fas fa-plus"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                                <h6 class="dropdown-header d-flex align-items-center">
+                                    <div class="dropdown-user-details">
+                                        <div class="dropdown-user-details-name">Create</div>
+                                    </div>
+                                </h6>
+                                <div class="dropdown-divider"></div>
+                                <!-- New Post -->
+                                <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}/posts/create">
+                                    <div class="dropdown-item-icon"><i class="fas fa-edit"></i></div>
+                                    New Post
+                                </a>
+                                <!-- New Group -->
+                                <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}/posts/create">
+                                    <div class="dropdown-item-icon"><i class="fa fa-users"></i></div>
+                                    New Group
+                                </a>
+                                
+                            </div>
                         </li>
-                    @endif
+                        <!-- User Dropdown-->
+                        <li class="nav-item dropdown no-caret mr-3 mr-lg-0 dropdown-user">
+                            <a 
+                                class="btn btn-icon btn-transparent-dark dropdown-toggle" 
+                                id="navbarDropdownUserImage" 
+                                href="javascript:void(0);" 
+                                role="button" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                aria-expanded="false"
+                            >
+                                <img class="img-fluid" src="/storage/{{ auth()->user()->profile->avatar_image }}" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                                <h6 class="dropdown-header d-flex align-items-center">
+                                    <div class="dropdown-user-details">
+                                        <div class="dropdown-user-details-name">Hi <strong>{{ auth()->user()->name }}</strong></div>
+                                    </div>
+                                </h6>
+                                <div class="dropdown-divider"></div>
+                                <!-- Profile -->
+                                <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}">
+                                    <div class="dropdown-item-icon"><i class="fa fa-user"></i></div>
+                                    Profile
+                                </a>
+                                <!-- Logout -->
+                                <a 
+                                    class="dropdown-item" 
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();"
+                                >
+                                    <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>     
+                    @endauth
                     
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    
-                @endguest
-            </ul>
-        </nav>
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+                        
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        
+                    @endguest
+                </ul>
+            </nav>
+        </header>
         <main class="pt-5">
+
             @yield('content')
+
+            <x-message-bar />
+
         </main>
 
-        </div>
+        
         <!-- Scripts -->
         <script src={{ asset("js/app.js") }}></script>
         <script src={{ asset("js/sb-admin.js") }}></script>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>
-          AOS.init();
+            AOS.init();
         </script>
+        @stack('custom-scripts')
         @livewireScripts
     </body>
 </html>

@@ -28,6 +28,8 @@ class CommentIndex extends Component
 
     public function commentCreated($postId)
     {
+        $this->dispatchBrowserEvent('action-performed', ['message' => 'Comment posted']);
+
         if ($this->post->id === $postId) {
             $this->viewAllBtnClicked ? '' : $this->viewAllBtnClicked = true;
         }

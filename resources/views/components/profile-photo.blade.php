@@ -1,5 +1,5 @@
 <section class="col-xl-8">
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-header intro-card-header text-dark">
             Photos ({{ $photos->count() }})
         </div>

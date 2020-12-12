@@ -10,34 +10,24 @@ class FriendsList extends Component
 {
     public $user;
     public $friends;
+    public $friendsCount;
 
     public function mount(User $user)
     {   
         $this->user = $user;
-        $this->friends = $this->user->approvedFriends;
-        // dd($this->friends);
-        // auth()->user()->friends->where('pivot.status', 'accepted');
-        // $this->friends = $this->getFriends($user);
     }
 
-    protected function getFriends($user)
-    {
-        $this->friends = Friend::where([
-            ['user_id', $user->id],
-            ['status', 'accepted'],
-        ])->latest()->get();
-        
-        $friendIds = $this->friends->map(function ($friend) {
-            return $friend->friend_id;
-        });
-
-        return $friendIds->map(function ($friendId) {
-            return User::find($friendId);
-        });
-    }
-    
     public function render()
     {
+        $this->friends = $this->user->approvedFriends;
+
+        $this->friendsCount = $this->friends->count();
+
+        // Only show 15 random friends 
+        $this->friendsCount > 15
+                ? $this->friends = $this->friends->random(15)
+                : null;
+
         return view('livewire.sidebar.friends-list');
     }
 }

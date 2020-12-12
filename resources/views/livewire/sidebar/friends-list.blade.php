@@ -4,7 +4,8 @@
             <div>Friends</div>
             <a class="btn btn-light" href="{{ route('profile', [$user->username]) }}/friends">See All Friends</a>
         </div>
-        <div class="text-muted h6">{{ $friends->count() }} @choice('friend|friends', $friends->count())</div>
+        {{-- <div class="text-muted h6">{{ $friends->count() }} @choice('friend|friends', $friends->count())</div> --}}
+        <div class="text-muted h6">{{ $friendsCount }} @choice('friend|friends', $friendsCount)</div>
     </div>
     {{-- <div class="card-body d-flex flex-wrap no-gutters pt-2"> save for grid-pictures --}}
     <div class="card-body d-flex flex-wrap justify-content-space pt-2">

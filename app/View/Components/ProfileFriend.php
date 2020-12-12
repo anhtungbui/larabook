@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class ProfileFriend extends Component
 {
+    public User $user;
     /**
      * Create a new component instance.
      *
@@ -13,7 +14,7 @@ class ProfileFriend extends Component
      */
     public function __construct()
     {
-        //
+        
     }
 
     /**
@@ -23,6 +24,7 @@ class ProfileFriend extends Component
      */
     public function render()
     {
+        // dd($this->user);
         return view('components.profile-friend');
     }
 }

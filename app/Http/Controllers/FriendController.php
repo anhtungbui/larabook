@@ -13,10 +13,10 @@ class FriendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index($username)
     {
+        $user = User::with('profile')->where('username', $username)->first();
         
-        // return view('livewire.friends.friends-index', compact('user'));
         return view('components.profile-friend', compact('user'));
     }
 

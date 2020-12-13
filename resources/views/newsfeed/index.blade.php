@@ -1,5 +1,13 @@
 @extends('layouts.base')
 
+@section('title')
+    @if (auth()->user()->unreadNotifications->count() > 0)
+        ({{ auth()->user()->unreadNotifications->count() }}) {{ auth()->user()->name }} |
+    @else
+        {{ auth()->user()->name }} |
+    @endif
+@endsection
+
 @section('content')
 <!-- Main page content-->
 <div class="container pb-5">

@@ -9,7 +9,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
-        <title>Larabook</title>
+        <title>@yield('title') Larabook</title>
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />

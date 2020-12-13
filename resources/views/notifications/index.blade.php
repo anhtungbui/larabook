@@ -1,5 +1,10 @@
 @extends('layouts.base')
 
+@section('title')
+    Notifications |
+@endsection
+
+
 @section('content')
 <!-- Main page content-->
 <div class="container pb-5">

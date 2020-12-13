@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('title')
+    Login |
+@endsection
+
 @section('content')
 <div id="layoutAuthentication" class="bg-gradient-primary-to-secondary pt-5">
     <div id="layoutAuthentication_content">

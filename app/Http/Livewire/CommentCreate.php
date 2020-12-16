@@ -3,12 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use App\Notifications\CommentCreated;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class CommentCreate extends Component
 {
     public Post $post;
     public $content;
+    
     protected $rules = [
         'content' => 'required|min:2'
     ];
@@ -33,20 +36,8 @@ class CommentCreate extends Component
                                     ]);
                                     
         $this->content = '';
-        $this->notify();
-        $this->emit('commentCreated', $this->post->id);
-    }
 
-    protected function notify()
-    {
-        // Fire a notification only if we do some activities on other people's profile
-        if ($this->post->user->id !== auth()->id()) {
-            $this->post->user->notifications()->create([
-                    'from_user_id' => auth()->id(),
-                    'content' => auth()->user()->name . ' commented on one of your posts',
-                    'source_url' => route('posts.show', [$this->post->user->username, $this->post->id]),
-                    'type' => 'comment'
-                ]);
-        }
+        Notification::send($this->post->user, new CommentCreated($this->post));
+        $this->emit('commentCreated', $this->post->id);
     }
 }

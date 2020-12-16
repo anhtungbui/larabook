@@ -33,11 +33,11 @@
             </div>
         @endif
 
-        @auth
+        @can('update', $user->profile)
             <div class="pt-3">
                 <a href="{{ route('profile', auth()->user()->username) }}/edit" class="btn btn-light btn-block">Edit Profile</a>
             </div>
-        @endauth
+        @endcan
 
     </div>
 </div>

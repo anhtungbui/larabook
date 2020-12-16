@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Models\Post;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -65,14 +66,13 @@ class CommentCreated extends Notification
 
     public function toPostAuthor($notifiable)
     {
-        // Fire a notification only if we do some activities on other people's profile
-        if ($this->post->user->id !== auth()->id()) {
+        if (Gate::check('notify-user', $this->post)) {
             $this->post->user->notifications()->create([
-                    'from_user_id' => auth()->id(),
-                    'content' => auth()->user()->name . ' commented on one of your posts',
-                    'source_url' => route('posts.show', [$this->post->user->username, $this->post->id]),
-                    'type' => 'comment'
-                ]);
+                'from_user_id' => auth()->id(),
+                'content' => auth()->user()->name . ' commented on one of your posts',
+                'source_url' => route('posts.show', [$this->post->user->username, $this->post->id]),
+                'type' => 'comment'
+            ]);
         }
     }
 }

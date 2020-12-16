@@ -35,13 +35,18 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('update-post', function (User $user, Post $post) {
-            // return $post->user->is($user);
-            // return $post->user->id === $user->id;
+            // same as return $post->user->is($user);
+            // same as return $user->id === $post->user->id;
             return $user->id === $post->user_id;
         });
 
         Gate::define('delete-post', function (User $user, Post $post) {
             return $user->id === $post->user_id;
+        });
+
+        Gate::define('notify-user', function (User $user, Post $post) {
+            // return $post->user->id !== auth()->id();
+            return $post->user->id !== $user->id;
         });
     }
 }

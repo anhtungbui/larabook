@@ -18,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // 'App\Models\Post' => 'App\Policies\PostPolicy',
     ];
 
     /**
@@ -29,24 +30,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // FIXME:
-        Gate::define('create-post', function (User $user) {
-            return $user->id === auth()->id();
-        });
-
-        Gate::define('update-post', function (User $user, Post $post) {
-            // same as return $post->user->is($user);
-            // same as return $user->id === $post->user->id;
-            return $user->id === $post->user_id;
-        });
-
-        Gate::define('delete-post', function (User $user, Post $post) {
-            return $user->id === $post->user_id;
+        Gate::define('view-whatsOnYourMind', function (User $authUser, User $user) {
+            return $authUser->id === $user->id;
         });
 
         Gate::define('notify-user', function (User $user, Post $post) {
-            // return $post->user->id !== auth()->id();
-            return $post->user->id !== $user->id;
+            // Or return $post->user->id !== auth()->id();
+            return $post->user_id !== $user->id;
         });
     }
 }

@@ -11,32 +11,20 @@ use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(User $user)
     {
+        if ($user->cannot('create', App\Models\Post::class)) {
+            abort(403);
+        } 
+        
         return view('posts.create', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -53,46 +41,27 @@ class PostController extends Controller
 
         return redirect(route('profile', [auth()->user()->username] ))
                 ->with('message', 'Post created');
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user, Post $post)
     {
-        // $comments = Comment::findMany([22, 23])->count();
-        // ddd($comments);
         return view('posts.show', compact('user', 'post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user, Post $post)
+    public function edit(Request $request, User $user, Post $post)
     {
+        if ($request->user()->cannot('update', $post)) {
+            abort(403);
+        }
+
         return view('posts.edit', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user, Post $post)
     {
-        Gate::authorize('update-post', $post);
-        // if (!Gate::allows('update-post', $post)) {
-        //     abort(403);
-        // }
+        if ($request->user()->cannot('update', $post)) {
+            abort(403);
+        }
 
         $validatedData = $request->validate([ 
                 'content' => ['required'], 
@@ -104,22 +73,15 @@ class PostController extends Controller
                         ->with('message', 'Post updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user, Post $post)
+    public function destroy(Request $request, User $user, Post $post)
     {
-        Gate::authorize('delete-post', $post);
+        if ($request->user()->cannot('delete', $post)) {
+            abort(403);
+        }
 
         $post->delete();
         
         return redirect(route('profile', [auth()->user()->username] ))
             ->with('message', 'Post deleted');
-        
-            if (auth()->check()) {
-        } 
     }
 }

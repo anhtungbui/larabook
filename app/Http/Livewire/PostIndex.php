@@ -16,6 +16,7 @@ class PostIndex extends Component
     public function mount($user)
     {
         $this->user = $user;
+        
     }
     
     public function render()

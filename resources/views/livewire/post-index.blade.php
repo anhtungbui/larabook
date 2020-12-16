@@ -1,7 +1,5 @@
 <section class="col-xl-8">
-    @auth
-        @can('create-post', $user)
-        {{-- @if (auth()->id() === $user->id) --}}
+    @can('view-whatsOnYourMind', $user)
         <!-- What's on your mind Card -->
         <div class="card shadow-sm mb-4" data-aos="fade-up">
             <div class="card-body d-flex justify-content-between">
@@ -25,10 +23,7 @@
                 </div>
             </div>
         </div> 
-        {{-- @endif --}}
-            
-        @endcan
-    @endauth
+    @endcan
     
     <!-- All Posts -->
     @foreach ($posts as $post)

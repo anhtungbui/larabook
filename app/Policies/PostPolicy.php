@@ -30,7 +30,14 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        //
+        // dd('hhhh');
+        
+        return $user->id === $post->user_id;
+    }
+
+    public function viewCreatePost($authUser, $user) 
+    {
+        dd($authUser);
     }
 
     /**
@@ -39,9 +46,17 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
+    // public function create(User $authUser, User $user)
+    // {   
+    //     return $authUser->id === $user->id;
+
+    // }
     public function create(User $user)
-    {
+    {   
         
+        return $user->id === auth()->id();
+           
+
     }
 
     /**
@@ -53,6 +68,8 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
+        // same as return $post->user->is($user);
+        // same as return $user->id === $post->user->id;
         return $user->id === $post->user_id;
     }
 
@@ -65,7 +82,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id;
     }
 
     /**

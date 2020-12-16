@@ -23,8 +23,9 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Save Post</a>
-                <div class="dropdown-divider"></div>
-                @can('update-post', $post)
+                <!-- Edit post -->
+                @can('update', $post)
+                    <div class="dropdown-divider"></div>
                     <a 
                         class="dropdown-item"
                         href="{{ route('posts.edit', [$post->user->username, $post->id]) }}" 
@@ -32,28 +33,19 @@
                         Edit
                     </a>
                 @endcan
-
-                @can('delete-post', $post)
-                <div class="dropdown-item">
-                    <form 
-                    action="{{ route('posts.destroy', [$post->user->username, $post->id]) }}"
-                    method="POST"
-                
-                >
-                    @csrf
-                    @method('DELETE')   
-                    {{-- <input type="text" class="d-none" name="post_id" value="{{ $post->id }}"> --}}
-                    <input type="submit" class="bg-transparent pl-0 border-0" value="Delete Post">
-                    </form>
-
-                </div>
-
-                    {{-- <a 
-                        class="dropdown-item"
-                        href="{{ route('posts.destroy', [$post->user->username, $post->id])}}"
+                <!-- Delete post -->
+                @can('delete', $post)
+                    <div class="dropdown-item">
+                        <form 
+                        action="{{ route('posts.destroy', [$post->user->username, $post->id]) }}"
+                        method="POST"
                     >
-                        Delete
-                    </a> --}}
+                        @csrf
+                        @method('DELETE')   
+                        {{-- <input type="text" class="d-none" name="post_id" value="{{ $post->id }}"> --}}
+                        <input type="submit" class="bg-transparent pl-0 border-0" value="Delete Post">
+                        </form>
+                    </div>
                 @endcan
             </div>
           </div>

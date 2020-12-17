@@ -110,7 +110,7 @@
                                     New Post
                                 </a>
                                 <!-- New Group -->
-                                <a class="dropdown-item" href="{{ route('profile', [auth()->user()->username]) }}/posts/create">
+                                <a class="dropdown-item" href="/groups/create">
                                     <div class="dropdown-item-icon"><i class="fa fa-users"></i></div>
                                     New Group
                                 </a>

@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\BestReplyController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\FriendController;
@@ -12,8 +12,9 @@ use App\Http\Controllers\SearchController;
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Livewire\Friends\FriendsIndex;
+use App\Http\Controllers\BestReplyController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,3 +105,7 @@ Route::prefix('/{user:username}')->middleware('auth')
     });
 });
 
+/** Groups */
+Route::get('/groups/create', [GroupController::class, 'create'])->name('groups.create');
+Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
+Route::get('/groups/{group}', [GroupController::class, 'show'])->name('groups.show');

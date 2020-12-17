@@ -15,9 +15,18 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('bio');
-            $table->boolean('is_public')->default(1);
+            $table->string('name')
+                  ->unique();
+
+            $table->string('bio')
+                  ->nullable();
+
+            $table->string('avatar_image')
+                  ->default('avatars/group-avatar-placeholder.png');
+
+            $table->boolean('is_public')
+                  ->default(1);
+
             $table->timestamps();
         });
     }

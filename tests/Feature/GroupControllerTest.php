@@ -54,4 +54,15 @@ class GroupControllerTest extends TestCase
         
         $this->assertEquals('avatars/' . $file->hashName(), Group::first()->avatar_image);
     }
+
+    public function test_a_private_group_can_be_created()
+    {
+        $data = array_merge($this->getData(), ['is_private' => 'on']);
+        $user = $this->getUser();
+        $this->withoutExceptionHandling();
+
+        $response = $this->actingAs($user)->post('/groups', $data);
+
+        $this->assertEquals(0, Group::first()->is_public);
+    }
 }

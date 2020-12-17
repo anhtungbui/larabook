@@ -52,6 +52,20 @@
                                             value="{{ old('bio') }}"
                                         >
                                     </div>
+                                    <!-- Form Group (content) -->
+                                    <div class="form-group form-check">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-check-input" 
+                                            name="is_private"
+                                        >
+                                        <label 
+                                            class="form-check-label" 
+                                            for="is_private"
+                                        >
+                                            <strong>Private</strong> group
+                                        </label>
+                                    </div>
                                     <!-- Form group (image) -->
                                     <div class="form-group">
                                         <label for="image_src">

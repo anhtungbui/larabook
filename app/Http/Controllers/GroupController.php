@@ -42,6 +42,8 @@ class GroupController extends Controller
             'bio' => '',
             'image_upload' => 'image',
         ]);
+        
+        $request->is_private === 'on' ? $validated['is_public'] = 0 : '';
 
         if (isset($validated['image_upload'])) {
             $image_path = $validated['image_upload']->store('avatars', 'public');

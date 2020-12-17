@@ -108,4 +108,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Notification::class)->where('is_read', false);
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class)->withPivot('membership');
+    }
 }
